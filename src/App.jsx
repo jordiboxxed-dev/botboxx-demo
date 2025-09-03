@@ -315,21 +315,21 @@ const KnowledgeUploader = ({ onBotStart, initialKnowledge = '', initialImage = n
 };
 
 const ChatWindow = ({ knowledge, uploadedImage, leadQualQuestions, agentProfile, onReset, onShare, onBackToConfig, isTtsEnabled, onTtsToggle, themeColors }) => {
-    const [messages, setMessages] = React.useState([
+    const [messages, setMessages] = useState([
         { type: 'text', text: `¡Hola! Soy ${agentProfile.name || 'tu asistente virtual'}${agentProfile.company ? ` de ${agentProfile.company}`: ''}. Ya procesé la información. Preguntame lo que quieras 😉`, sender: 'bot' }
     ]);
-    const [input, setInput] = React.useState('');
-    const [imageToSend, setImageToSend] = React.useState(null);
-    const [isTyping, setIsTyping] = React.useState(false);
-    const [isRecording, setIsRecording] = React.useState(false);
-    const [currentAudio, setCurrentAudio] = React.useState(null);
-    const [conversationFlow, setConversationFlow] = React.useState({ type: 'normal', step: 0, data: {} });
+    const [input, setInput] = useState('');
+    const [imageToSend, setImageToSend] = useState(null);
+    const [isTyping, setIsTyping] = useState(false);
+    const [isRecording, setIsRecording] = useState(false);
+    const [currentAudio, setCurrentAudio] = useState(null);
+    const [conversationFlow, setConversationFlow] = useState({ type: 'normal', step: 0, data: {} });
     
-    const messagesEndRef = React.useRef(null);
-    const chatFileInputRef = React.useRef(null);
-    const recognitionRef = React.useRef(null);
+    const messagesEndRef = useRef(null);
+    const chatFileInputRef = useRef(null);
+    const recognitionRef = useRef(null);
 
-    React.useEffect(() => {
+    useEffect(() => {
         const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
         if (SpeechRecognition && !recognitionRef.current) {
             const recognition = new SpeechRecognition();
@@ -349,7 +349,7 @@ const ChatWindow = ({ knowledge, uploadedImage, leadQualQuestions, agentProfile,
         return () => { if(currentAudio) currentAudio.pause(); if (recognitionRef.current) recognitionRef.current.stop(); }
     }, [currentAudio]);
 
-    React.useEffect(() => { messagesEndRef.current?.scrollIntoView({ behavior: "smooth" }); }, [messages, isTyping]);
+    useEffect(() => { messagesEndRef.current?.scrollIntoView({ behavior: "smooth" }); }, [messages, isTyping]);
 
     const playAudio = async (text) => {
         if (currentAudio) { currentAudio.pause(); }
@@ -602,8 +602,8 @@ const CrmNotification = ({ leadData }) => (
                 </p>
             </div>
         </div>
-    );
-};
+    </div>
+);
 
 const BrandedBackground = ({ url }) => {
     if (!url) return null;
@@ -760,10 +760,4 @@ export default function App() {
         </main>
     );
 }
-
-
-
-
-
-
 
