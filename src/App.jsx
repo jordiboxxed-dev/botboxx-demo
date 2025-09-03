@@ -385,7 +385,7 @@ const ChatWindow = ({ knowledge, uploadedImage, leadQualQuestions, agentProfile,
         if (initialImage) { systemText += `\n\nAdicionalmente, tienes una imagen de contexto general.`; }
         systemText += `\n\nResponde siempre en español. Formatea las listas con asteriscos (*).`;
         
-        const systemInstruction = { parts: [{ text: systemText }] };
+        const systemInstruction = { role: 'model', parts: [{ text: systemText }] };
         const historyContents = chatHistory.filter(msg => msg.type === 'text').map(msg => ({ 
             role: msg.sender === 'user' ? 'user' : 'model', 
             parts: [{ text: msg.text }] 
