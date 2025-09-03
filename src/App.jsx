@@ -551,6 +551,60 @@ const ChatWindow = ({ knowledge, uploadedImage, leadQualQuestions, agentProfile,
     )
 }
 
+const MarkdownRenderer = ({ text }) => {
+    const formatText = (inputText) => {
+        let formattedText = inputText.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>').replace(/\*(.*?)\*/g, '<em>$1</em>');
+        formattedText = formattedText.split('\n').map(line => {
+            if (line.trim().startsWith('* ') || line.trim().startsWith('- ')) { return `<li>${line.trim().substring(2)}</li>`; }
+            return line;
+        }).join('');
+        if (formattedText.includes('<li>')) { formattedText = '<ul>' + formattedText.replace(/<\/li><li>/g, '</li><li>') + '</ul>'; }
+        return formattedText.replace(/\n/g, '<br />').replace(/<ul><br \/>/g, '<ul>').replace(/<br \/><\/ul>/g, '</ul>');
+    };
+    return <div className="prose-chat" dangerouslySetInnerHTML={{ __html: formatText(text || '') }} />;
+};
+
+const CalendarWidget = ({ onSelect, themeColors }) => {
+    const today = new Date();
+    const days = Array.from({ length: 4 }, (_, i) => new Date(new Date().setDate(today.getDate() + i + 1)));
+    const timeSlots = ["10:00", "11:30", "14:00", "15:30", "17:00"];
+    
+    return (
+        <div className="p-2">
+            <p className="font-bold mb-2 text-white">Seleccioná un día y horario:</p>
+            <div className="flex justify-around mb-3">
+                {days.map((day, i) => (
+                    <div key={i} className="text-center">
+                        <div className="text-xs text-gray-400">{day.toLocaleDateString('es-ES', { weekday: 'short' })}</div>
+                        <div className="font-bold text-lg">{day.getDate()}</div>
+                    </div>
+                ))}
+            </div>
+            <div className="grid grid-cols-3 gap-2">
+                {timeSlots.map(time => (
+                    <button key={time} onClick={() => onSelect(days[1], time)} className="bg-[var(--primary-color-faded)] text-white text-sm py-1 rounded hover:bg-[var(--primary-color)] transition-colors" style={{'--primary-color-faded': `${themeColors.primary}80`}}>
+                        {time}
+                    </button>
+                ))}
+            </div>
+        </div>
+    );
+};
+
+const CrmNotification = ({ leadData }) => (
+    <div className="bg-gray-700/80 p-3 rounded-lg border border-white/10 animate-fade-in">
+        <div className="flex items-center gap-3">
+            <div className="bg-green-500/20 text-green-400 p-2 rounded-full"><CrmIcon /></div>
+            <div>
+                <p className="font-bold text-sm text-green-400">Nuevo Lead Cualificado</p>
+                <p className="text-xs text-gray-300">
+                    {leadData.name} ({leadData.email}) ha sido agregado al CRM.
+                </p>
+            </div>
+        </div>
+    );
+};
+
 const BrandedBackground = ({ url }) => {
     if (!url) return null;
     let domain = '';
@@ -706,6 +760,8 @@ export default function App() {
         </main>
     );
 }
+
+
 
 
 
