@@ -1,23 +1,11 @@
-import React, { useState, useEffect, useRef, createContext, useContext } from 'react';
-import { initializeApp, getApps } from 'firebase/app';
-import { 
-    getAuth, 
-    onAuthStateChanged, 
-    signInWithEmailAndPassword, 
-    signOut 
-} from 'firebase/auth';
-import { 
-    getFirestore, 
-    doc, 
-    getDoc, 
-    setDoc,
-    updateDoc
-} from 'firebase/firestore';
+import React from 'react';
 
 // --- Iconos SVG ---
 const LogoIcon = ({ themeColors }) => ( <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M24 4C12.9543 4 4 12.9543 4 24C4 35.0457 12.9543 44 24 44C35.0457 44 44 35.0457 44 24C44 12.9543 35.0457 4 24 4Z" stroke="url(#paint0_linear_logo)" strokeWidth="2"/><circle cx="16" cy="24" r="2" fill="url(#paint1_linear_logo)"/><circle cx="24" cy="24" r="2" fill="url(#paint2_linear_logo)"/><circle cx="32" cy="24" r="2" fill="url(#paint3_linear_logo)"/><defs><linearGradient id="paint0_linear_logo" x1="4" y1="4" x2="44" y2="44" gradientUnits="userSpaceOnUse"><stop stopColor={themeColors.secondary}/><stop offset="1" stopColor={themeColors.primary}/></linearGradient><linearGradient id="paint1_linear_logo" x1="14" y1="24" x2="18" y2="24" gradientUnits="userSpaceOnUse"><stop stopColor={themeColors.secondary}/><stop offset="1" stopColor={themeColors.primary}/></linearGradient><linearGradient id="paint2_linear_logo" x1="22" y1="24" x2="26" y2="24" gradientUnits="userSpaceOnUse"><stop stopColor={themeColors.primary}/><stop offset="1" stopColor={themeColors.secondary}/></linearGradient><linearGradient id="paint3_linear_logo" x1="30" y1="24" x2="34" y2="24" gradientUnits="userSpaceOnUse"><stop stopColor={themeColors.primary}/><stop offset="1" stopColor="#4F46E5"/></linearGradient></defs></svg> );
 const SendIcon = () => ( <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-send"><path d="m22 2-7 20-4-9-9-4Z" /><path d="m22 2-11 11" /></svg> );
 const UploadIcon = () => ( <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-upload-cloud"><path d="M4 14.899A7 7 0 1 1 15.71 8h1.79a4.5 4.5 0 0 1 2.5 8.242" /><path d="M12 12v9" /><path d="m16 16-4-4-4 4" /></svg> );
+const ResetIcon = () => ( <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-rotate-cw"><path d="M21 2v6h-6" /><path d="M21 13a9 9 0 1 1-3-7.7L21 8" /></svg> );
+const ShareIcon = () => ( <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-share-2"><circle cx="18" cy="5" r="3" /><circle cx="6" cy="12" r="3" /><circle cx="18" cy="19" r="3" /><line x1="8.59" x2="15.42" y1="13.51" y2="17.49" /><line x1="15.41" x2="8.59" y1="6.51" y2="10.49" /></svg> );
 const SparkleIcon = () => ( <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-sparkles"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/><path d="M5 3v4"/><path d="M19 17v4"/><path d="M3 5h4"/><path d="M17 19h4"/></svg> );
 const BackIcon = () => ( <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-arrow-left"><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></svg> );
 const LinkIcon = () => ( <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-link"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.72"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.72-1.72"/></svg> );
@@ -26,8 +14,8 @@ const VolumeOnIcon = () => ( <svg xmlns="http://www.w3.org/2000/svg" width="24" 
 const VolumeOffIcon = () => ( <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-volume-x"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><line x1="22" x2="16" y1="9" y2="15"/><line x1="16" x2="22" y1="9" y2="15"/></svg> );
 const MicIcon = () => ( <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-mic"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" x2="12" y1="19" y2="22"/></svg> );
 const CrmIcon = () => ( <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-users-round"><path d="M18 21a8 8 0 0 0-12 0"/><circle cx="12" cy="11" r="4"/><rect width="16" height="16" x="4" y="3" rx="2"/></svg> );
-const LogoutIcon = () => ( <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-log-out"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" x2="9" y1="12" y2="12"/></svg> );
 const ColorPaletteIcon = () => ( <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-palette"><circle cx="13.5" cy="6.5" r=".5" fill="currentColor"/><circle cx="17.5" cy="10.5" r=".5" fill="currentColor"/><circle cx="8.5" cy="7.5" r=".5" fill="currentColor"/><circle cx="6.5" cy="12.5" r=".5" fill="currentColor"/><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.668 0-.92-.722-1.667-1.648-1.667-.926 0-1.648-.746-1.648-1.668 0-.92-.722-1.667-1.648-1.667-.926 0-1.648-.746-1.648-1.668 0-.92-.722-1.667-1.648-1.667A6.5 6.5 0 0 1 12 2Z"/></svg>);
+
 
 // --- Funciones de API de Gemini ---
 const callGeminiAPI = async (payload, useGrounding = false, retries = 3, delay = 1000) => {
@@ -37,7 +25,7 @@ const callGeminiAPI = async (payload, useGrounding = false, retries = 3, delay =
         throw new Error("API key for Gemini is missing. Please set REACT_APP_GEMINI_API_KEY environment variable.");
     }
     const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=${apiKey}`;
-    
+
     if (useGrounding) {
         payload.tools = [{ "google_search": {} }];
     }
@@ -122,97 +110,33 @@ const pcmToWav = (pcmData, sampleRate) => {
 
 // --- Componentes ---
 
-const LoginScreen = () => {
-    const { auth } = useFirebase();
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-    const [error, setError] = useState('');
-    const [loading, setLoading] = useState(false);
-    const themeColors = { primary: '#6366F1', secondary: '#A78BFA' }; 
-
-    const handleLogin = async (e) => {
-        e.preventDefault();
-        if (!auth) {
-            setError("El servicio de autenticación no está disponible. Revisa la configuración.");
-            return;
-        }
-        setLoading(true);
-        setError('');
-        try {
-            await signInWithEmailAndPassword(auth, email, password);
-        } catch (err) {
-            console.error("Login error:", err.code, err.message);
-            if (err.code === 'auth/wrong-password' || err.code === 'auth/user-not-found' || err.code === 'auth/invalid-credential') {
-                setError('Email o contraseña incorrectos.');
-            } else if (err.code === 'auth/invalid-email') {
-                setError('El formato del email no es válido.');
-            } else {
-                setError('Ocurrió un error. Inténtalo de nuevo.');
-            }
-        } finally {
-            setLoading(false);
-        }
-    };
-
-    return (
-         <div className="text-center p-8 max-w-sm mx-auto w-full bg-gray-900/50 backdrop-blur-xl rounded-2xl shadow-2xl border border-white/10">
-            <div className="flex justify-center items-center gap-3 mb-6">
-                <LogoIcon themeColors={themeColors} />
-                <h1 className="text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-gray-200 to-white">BotBoxx</h1>
-            </div>
-            <p className="text-gray-300 mb-8">Ingresá para configurar tu demo.</p>
-            <form onSubmit={handleLogin} className="space-y-4">
-                <input
-                    type="email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    placeholder="Email"
-                    required
-                    className="w-full bg-gray-800/60 border-2 border-white/10 text-gray-200 rounded-lg p-3 focus:ring-2 focus:ring-[var(--primary-color)] focus:border-[var(--primary-color)] transition-all"
-                />
-                <input
-                    type="password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    placeholder="Contraseña"
-                    required
-                    className="w-full bg-gray-800/60 border-2 border-white/10 text-gray-200 rounded-lg p-3 focus:ring-2 focus:ring-[var(--primary-color)] focus:border-[var(--primary-color)] transition-all"
-                />
-                {error && <p className="text-red-400 text-sm pt-1">{error}</p>}
-                <button
-                    type="submit"
-                    disabled={loading}
-                    className="w-full bg-gradient-to-br from-[var(--primary-color)] to-[var(--secondary-color)] text-white font-bold py-3 px-10 rounded-full shadow-lg shadow-indigo-500/40 hover:shadow-xl hover:shadow-indigo-500/60 transition-all duration-300 transform hover:scale-105 disabled:opacity-50 disabled:cursor-wait"
-                >
-                    {loading ? 'Ingresando...' : 'Ingresar'}
-                </button>
-            </form>
+const WelcomeScreen = ({ onStart, themeColors }) => (
+    <div className="text-center p-8 max-w-lg mx-auto">
+        <div className="flex justify-center items-center gap-3 mb-6"> <LogoIcon themeColors={themeColors} />
+            <h1 className="text-5xl md:text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-gray-200 to-white">BotBoxx</h1>
         </div>
-    );
-};
+        <p className="text-lg md:text-xl text-gray-300 mb-10"> Cargá tu info y charlá con tu agente de IA personalizado en segundos. </p>
+        <button onClick={onStart} className="bg-gradient-to-br from-[var(--primary-color)] to-[var(--secondary-color)] text-white font-bold py-4 px-10 rounded-full shadow-lg shadow-indigo-500/40 hover:shadow-xl hover:shadow-indigo-500/60 transition-all duration-300 transform hover:scale-105"> Crear Demo </button>
+    </div>
+);
 
-const KnowledgeUploader = ({ botData, onUpdate, onLogout, onStartChat }) => {
-    const {
-        knowledge,
-        uploadedImage,
-        leadQualQuestions,
-        agentProfile,
-        themeColors
-    } = botData;
+const KnowledgeUploader = ({ onBotStart, initialKnowledge = '', initialImage = null, initialLeadQuestions, onLeadQuestionsChange, initialAgentProfile, onAgentProfileChange, themeColors, onThemeColorsChange }) => {
+    const [knowledge, setKnowledge] = React.useState(initialKnowledge);
+    const [uploadedImage, setUploadedImage] = React.useState(initialImage);
+    const [urlInput, setUrlInput] = React.useState('');
+    const [importedUrl, setImportedUrl] = React.useState('');
+    const [error, setError] = React.useState('');
+    const [isGenerating, setIsGenerating] = React.useState(false);
+    const [insights, setInsights] = React.useState(null);
+    const [isLoadingFile, setIsLoadingFile] = React.useState(false);
+    const [isLoadingUrl, setIsLoadingUrl] = React.useState(false);
+    const fileInputRef = React.useRef(null);
 
-    const [urlInput, setUrlInput] = useState('');
-    const [error, setError] = useState('');
-    const [isGenerating, setIsGenerating] = useState(false);
-    const [insights, setInsights] = useState(null);
-    const [isLoadingFile, setIsLoadingFile] = useState(false);
-    const [isLoadingUrl, setIsLoadingUrl] = useState(false);
-    const fileInputRef = useRef(null);
-    
     const handleStart = () => {
         if (knowledge.trim().length < 20 && !uploadedImage) {
             setError('Por favor, cargá información válida (texto, PDF, imagen o URL).'); return;
         }
-        setError(''); onStartChat();
+        setError(''); onBotStart(knowledge, uploadedImage, importedUrl, initialLeadQuestions.filter(q => q.trim() !== ''), initialAgentProfile, themeColors);
     };
 
     const handleUrlImport = async () => {
@@ -229,11 +153,8 @@ const KnowledgeUploader = ({ botData, onUpdate, onLogout, onStartChat }) => {
             const bodyText = doc.body.textContent || "";
             const cleanText = bodyText.replace(/\s\s+/g, ' ').trim();
             if (cleanText.length < 50) throw new Error("No se encontró suficiente contenido de texto en la página.");
-            
-            const newKnowledge = (knowledge + '\n\n' + cleanText).trim().slice(0, 50000);
-            onUpdate('knowledge', newKnowledge);
-            onUpdate('importedUrl', urlInput);
-            setUrlInput('');
+            setKnowledge(prev => (prev + '\n\n' + cleanText).trim().slice(0, 50000));
+            setImportedUrl(urlInput); setUrlInput('');
         } catch (err) {
             console.error("Error importando desde URL:", err);
             setError("No se pudo importar el contenido. La web puede estar protegida.");
@@ -245,10 +166,7 @@ const KnowledgeUploader = ({ botData, onUpdate, onLogout, onStartChat }) => {
         setIsLoadingFile(true); setError('');
         if (file.type.startsWith('image/')) {
             const reader = new FileReader();
-            reader.onload = (e) => { 
-                onUpdate('uploadedImage', { name: file.name, data: e.target.result, type: file.type });
-                setIsLoadingFile(false); 
-            };
+            reader.onload = (e) => { setUploadedImage({ name: file.name, data: e.target.result, type: file.type }); setIsLoadingFile(false); };
             reader.readAsDataURL(file);
         } else if (file.type === 'application/pdf') {
             // eslint-disable-next-line no-undef
@@ -262,20 +180,14 @@ const KnowledgeUploader = ({ botData, onUpdate, onLogout, onStartChat }) => {
                         const page = await pdf.getPage(i); const text = await page.getTextContent();
                         textContent += text.items.map(s => s.str).join(' ');
                     }
-                    const newKnowledge = (knowledge + '\n\n' + textContent).trim().slice(0, 50000);
-                    onUpdate('knowledge', newKnowledge);
+                    setKnowledge(prev => (prev + '\n\n' + textContent).trim().slice(0, 50000));
                 } catch (pdfError) { console.error("Error procesando PDF:", pdfError); setError("No se pudo leer el archivo PDF."); } 
                 finally { setIsLoadingFile(false); }
             };
             reader.readAsArrayBuffer(file);
         } else if (file.type === 'text/plain') {
             const reader = new FileReader();
-            reader.onload = (e) => { 
-                const text = e.target.result; 
-                const newKnowledge = (knowledge + '\n\n' + text).trim().slice(0, 50000);
-                onUpdate('knowledge', newKnowledge);
-                setIsLoadingFile(false); 
-            };
+            reader.onload = (e) => { const text = e.target.result; setKnowledge(prev => (prev + '\n\n' + text).trim().slice(0, 50000)); setIsLoadingFile(false); };
             reader.readAsText(file);
         } else { setError("Formato de archivo no soportado. Por favor, sube .txt, .pdf o una imagen."); setIsLoadingFile(false); }
         event.target.value = null;
@@ -291,7 +203,7 @@ const KnowledgeUploader = ({ botData, onUpdate, onLogout, onStartChat }) => {
             generationConfig: { 
                 responseMimeType: "application/json", 
                 responseSchema: { type: "OBJECT", properties: { summary: { type: "STRING" }, questions: { type: "ARRAY", items: { type: "STRING" }}}, required: ["summary", "questions"]},
-            },
+            }
         };
         try {
             const result = await callGeminiAPI(payload, true);
@@ -302,21 +214,20 @@ const KnowledgeUploader = ({ botData, onUpdate, onLogout, onStartChat }) => {
     };
     
     return (
-        <div className="w-full max-w-3xl mx-auto p-4 md:p-6 bg-gray-900/50 backdrop-blur-xl rounded-2xl shadow-2xl border border-white/10 relative">
-             <button onClick={onLogout} title="Cerrar Sesión" className="absolute top-4 right-4 p-2 text-gray-400 hover:text-white hover:bg-white/10 rounded-full transition-colors"><LogoutIcon /></button>
+        <div className="w-full max-w-3xl mx-auto p-4 md:p-6 bg-gray-900/50 backdrop-blur-xl rounded-2xl shadow-2xl border border-white/10">
             <h2 className="text-3xl font-bold text-white mb-4 text-center">Configurá tu Agente</h2>
             <p className="text-gray-300 mb-6 text-center">Pegá texto, importá desde una URL o subí archivos para darle vida a tu bot.</p>
             
             <div className="my-6 p-4 border border-[var(--primary-color-faded)] rounded-lg bg-[var(--primary-color-dark)]" style={{ '--primary-color-faded': `${themeColors.primary}33`, '--primary-color-dark': `${themeColors.primary}1A`, '--primary-color-light': themeColors.primary }}>
                  <h3 className="text-lg font-bold text-[var(--primary-color-light)] text-center mb-3">Identidad del Agente</h3>
                  <div className="grid md:grid-cols-2 gap-3">
-                    <input type="text" value={agentProfile.name} onChange={(e) => onUpdate('agentProfile', {...agentProfile, name: e.target.value})} placeholder="Nombre del bot (ej: Boti)" className="w-full bg-gray-800/60 border-2 border-white/10 text-gray-200 rounded-lg p-2 focus:ring-1 focus:ring-[var(--primary-color)] focus:border-[var(--primary-color)] transition-all"/>
-                    <input type="text" value={agentProfile.company} onChange={(e) => onUpdate('agentProfile', {...agentProfile, company: e.target.value})} placeholder="Nombre de tu empresa" className="w-full bg-gray-800/60 border-2 border-white/10 text-gray-200 rounded-lg p-2 focus:ring-1 focus:ring-[var(--primary-color)] focus:border-[var(--primary-color)] transition-all"/>
+                    <input type="text" value={initialAgentProfile.name} onChange={(e) => onAgentProfileChange('name', e.target.value)} placeholder="Nombre del bot (ej: Boti)" className="w-full bg-gray-800/60 border-2 border-white/10 text-gray-200 rounded-lg p-2 focus:ring-1 focus:ring-[var(--primary-color)] focus:border-[var(--primary-color)] transition-all"/>
+                    <input type="text" value={initialAgentProfile.company} onChange={(e) => onAgentProfileChange('company', e.target.value)} placeholder="Nombre de tu empresa" className="w-full bg-gray-800/60 border-2 border-white/10 text-gray-200 rounded-lg p-2 focus:ring-1 focus:ring-[var(--primary-color)] focus:border-[var(--primary-color)] transition-all"/>
                  </div>
             </div>
 
             <div className="relative group mb-4">
-                <textarea value={knowledge} onChange={(e) => { onUpdate('knowledge', e.target.value.slice(0, 50000)); if (error) setError(''); }} placeholder="Pegá acá el contenido que quieras enseñar al bot..." className="w-full h-40 p-4 bg-gray-800/60 border-2 border-white/10 text-gray-200 rounded-lg focus:ring-2 focus:ring-[var(--primary-color)] focus:border-[var(--primary-color)] transition-all resize-none" maxLength="50000"></textarea>
+                <textarea value={knowledge} onChange={(e) => { setKnowledge(e.target.value.slice(0, 50000)); if (error) setError(''); }} placeholder="Pegá acá el contenido que quieras enseñar al bot..." className="w-full h-40 p-4 bg-gray-800/60 border-2 border-white/10 text-gray-200 rounded-lg focus:ring-2 focus:ring-[var(--primary-color)] focus:border-[var(--primary-color)] transition-all resize-none" maxLength="50000"></textarea>
                 <div className="absolute bottom-3 right-3 text-xs text-gray-400">{knowledge.length} / 50000</div>
             </div>
             <div className="relative flex items-center gap-2 mb-2">
@@ -331,30 +242,28 @@ const KnowledgeUploader = ({ botData, onUpdate, onLogout, onStartChat }) => {
                  <p className="text-sm text-center text-gray-400 mb-4">Definí preguntas para que el bot cualifique leads automáticamente.</p>
                  <div className="space-y-3">
                     {[0, 1, 2].map(index => (
-                        <input key={index} type="text" value={leadQualQuestions[index] || ''} onChange={(e) => { const newQ = [...leadQualQuestions]; newQ[index] = e.target.value; onUpdate('leadQualQuestions', newQ);}} placeholder={`Pregunta de cualificación ${index + 1}`} className="w-full bg-gray-800/60 border-2 border-white/10 text-gray-200 rounded-lg p-2 focus:ring-1 focus:ring-[var(--primary-color)] focus:border-[var(--primary-color)] transition-all"/>
+                        <input key={index} type="text" value={initialLeadQuestions[index] || ''} onChange={(e) => onLeadQuestionsChange(index, e.target.value)} placeholder={`Pregunta de cualificación ${index + 1}`} className="w-full bg-gray-800/60 border-2 border-white/10 text-gray-200 rounded-lg p-2 focus:ring-1 focus:ring-[var(--primary-color)] focus:border-[var(--primary-color)] transition-all"/>
                     ))}
                  </div>
             </div>
-
-            <div className="my-6 p-4 border border-[var(--primary-color-faded)] rounded-lg bg-[var(--primary-color-dark)]" style={{ '--primary-color-faded': `${themeColors.primary}33`, '--primary-color-dark': `${themeColors.primary}1A`, '--primary-color-light': themeColors.primary }}>
+             <div className="my-6 p-4 border border-[var(--primary-color-faded)] rounded-lg bg-[var(--primary-color-dark)]" style={{ '--primary-color-faded': `${themeColors.primary}33`, '--primary-color-dark': `${themeColors.primary}1A`, '--primary-color-light': themeColors.primary }}>
                 <h3 className="text-lg font-bold text-[var(--primary-color-light)] text-center mb-3 flex items-center justify-center gap-2"><ColorPaletteIcon /> Personalización Visual</h3>
                 <div className="grid grid-cols-2 gap-4">
                     <div className="flex flex-col items-center">
                         <label className="text-sm text-gray-300 mb-2">Color Primario</label>
-                        <input type="color" value={themeColors.primary} onChange={(e) => onUpdate('themeColors', {...themeColors, primary: e.target.value})} className="w-16 h-10 bg-transparent border-none cursor-pointer" />
+                        <input type="color" value={themeColors.primary} onChange={(e) => onThemeColorsChange('primary', e.target.value)} className="w-16 h-10 bg-transparent border-none cursor-pointer" />
                     </div>
                     <div className="flex flex-col items-center">
                         <label className="text-sm text-gray-300 mb-2">Color Secundario</label>
-                        <input type="color" value={themeColors.secondary} onChange={(e) => onUpdate('themeColors', {...themeColors, secondary: e.target.value})} className="w-16 h-10 bg-transparent border-none cursor-pointer" />
+                        <input type="color" value={themeColors.secondary} onChange={(e) => onThemeColorsChange('secondary', e.target.value)} className="w-16 h-10 bg-transparent border-none cursor-pointer" />
                     </div>
                 </div>
             </div>
 
-
             {uploadedImage && (
                 <div className="mt-4 p-2 border border-white/10 rounded-lg flex items-center justify-between bg-gray-800/70">
                     <div className="flex items-center gap-3"><img src={uploadedImage.data} alt="Vista previa" className="w-12 h-12 rounded object-cover" /><span className="text-sm text-gray-300 truncate">{uploadedImage.name}</span></div>
-                    <button onClick={() => onUpdate('uploadedImage', null)} className="text-red-400 hover:text-red-500 font-bold text-2xl px-2">&times;</button>
+                    <button onClick={() => setUploadedImage(null)} className="text-red-400 hover:text-red-500 font-bold text-2xl px-2">&times;</button>
                 </div>
             )}
             {error && <p className="text-red-400 text-sm mt-2 text-center">{error}</p>}
@@ -373,36 +282,82 @@ const KnowledgeUploader = ({ botData, onUpdate, onLogout, onStartChat }) => {
                     </ul>
                 </div>
             )}
-            <button onClick={handleStart} className="w-full mt-6 bg-gradient-to-br from-[var(--primary-color)] to-[var(--secondary-color)] text-white font-bold py-3 px-6 rounded-full shadow-lg shadow-indigo-500/40 hover:shadow-xl hover:shadow-indigo-500/60 transition-all duration-300 transform hover:scale-105">Iniciar Chat</button>
+            <button onClick={handleStart} className="w-full mt-6 bg-gradient-to-br from-[var(--primary-color)] to-[var(--secondary-color)] text-white font-bold py-3 px-6 rounded-full shadow-lg shadow-indigo-500/40 hover:shadow-xl hover:shadow-indigo-500/60 transition-all duration-300 transform hover:scale-105">{initialKnowledge || initialImage ? 'Continuar Chat' : 'Iniciar Bot'}</button>
         </div>
     );
 };
 
-const ChatWindow = ({ botData, onUpdate, onBackToConfig }) => {
-    const { 
-        knowledge, 
-        uploadedImage, 
-        leadQualQuestions, 
-        agentProfile, 
-        isTtsEnabled,
-        themeColors
-    } = botData;
+const MarkdownRenderer = ({ text }) => {
+    const formatText = (inputText) => {
+        let formattedText = inputText.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>').replace(/\*(.*?)\*/g, '<em>$1</em>');
+        formattedText = formattedText.split('\n').map(line => {
+            if (line.trim().startsWith('* ') || line.trim().startsWith('- ')) { return `<li>${line.trim().substring(2)}</li>`; }
+            return line;
+        }).join('');
+        if (formattedText.includes('<li>')) { formattedText = '<ul>' + formattedText.replace(/<\/li><li>/g, '</li><li>') + '</ul>'; }
+        return formattedText.replace(/\n/g, '<br />').replace(/<ul><br \/>/g, '<ul>').replace(/<br \/><\/ul>/g, '</ul>');
+    };
+    return <div className="prose-chat" dangerouslySetInnerHTML={{ __html: formatText(text || '') }} />;
+};
+
+const CalendarWidget = ({ onSelect, themeColors }) => {
+    const today = new Date();
+    const days = Array.from({ length: 4 }, (_, i) => new Date(new Date().setDate(today.getDate() + i + 1)));
+    const timeSlots = ["10:00", "11:30", "14:00", "15:30", "17:00"];
     
-    const [messages, setMessages] = useState([
+    return (
+        <div className="p-2">
+            <p className="font-bold mb-2 text-white">Seleccioná un día y horario:</p>
+            <div className="flex justify-around mb-3">
+                {days.map((day, i) => (
+                    <div key={i} className="text-center">
+                        <div className="text-xs text-gray-400">{day.toLocaleDateString('es-ES', { weekday: 'short' })}</div>
+                        <div className="font-bold text-lg">{day.getDate()}</div>
+                    </div>
+                ))}
+            </div>
+            <div className="grid grid-cols-3 gap-2">
+                {timeSlots.map(time => (
+                    <button key={time} onClick={() => onSelect(days[1], time)} className="bg-[var(--primary-color-faded)] text-white text-sm py-1 rounded hover:bg-[var(--primary-color)] transition-colors" style={{'--primary-color-faded': `${themeColors.primary}80`}}>
+                        {time}
+                    </button>
+                ))}
+            </div>
+        </div>
+    );
+};
+
+const CrmNotification = ({ leadData }) => (
+    <div className="bg-gray-700/80 p-3 rounded-lg border border-white/10 animate-fade-in">
+        <div className="flex items-center gap-3">
+            <div className="bg-green-500/20 text-green-400 p-2 rounded-full"><CrmIcon /></div>
+            <div>
+                <p className="font-bold text-sm text-green-400">Nuevo Lead Cualificado</p>
+                <p className="text-xs text-gray-300">
+                    {leadData.name} ({leadData.email}) ha sido agregado al CRM.
+                </p>
+            </div>
+        </div>
+    </div>
+);
+
+
+const ChatWindow = ({ knowledge, uploadedImage, leadQualQuestions, agentProfile, onReset, onShare, onBackToConfig, isTtsEnabled, onTtsToggle, themeColors }) => {
+    const [messages, setMessages] = React.useState([
         { type: 'text', text: `¡Hola! Soy ${agentProfile.name || 'tu asistente virtual'}${agentProfile.company ? ` de ${agentProfile.company}`: ''}. Ya procesé la información. Preguntame lo que quieras 😉`, sender: 'bot' }
     ]);
-    const [input, setInput] = useState('');
-    const [imageToSend, setImageToSend] = useState(null);
-    const [isTyping, setIsTyping] = useState(false);
-    const [isRecording, setIsRecording] = useState(false);
-    const [currentAudio, setCurrentAudio] = useState(null);
-    const [conversationFlow, setConversationFlow] = useState({ type: 'normal', step: 0, data: {} });
+    const [input, setInput] = React.useState('');
+    const [imageToSend, setImageToSend] = React.useState(null);
+    const [isTyping, setIsTyping] = React.useState(false);
+    const [isRecording, setIsRecording] = React.useState(false);
+    const [currentAudio, setCurrentAudio] = React.useState(null);
+    const [conversationFlow, setConversationFlow] = React.useState({ type: 'normal', step: 0, data: {} });
     
-    const messagesEndRef = useRef(null);
-    const chatFileInputRef = useRef(null);
-    const recognitionRef = useRef(null);
+    const messagesEndRef = React.useRef(null);
+    const chatFileInputRef = React.useRef(null);
+    const recognitionRef = React.useRef(null);
 
-    useEffect(() => {
+    React.useEffect(() => {
         const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
         if (SpeechRecognition && !recognitionRef.current) {
             const recognition = new SpeechRecognition();
@@ -422,7 +377,7 @@ const ChatWindow = ({ botData, onUpdate, onBackToConfig }) => {
         return () => { if(currentAudio) currentAudio.pause(); if (recognitionRef.current) recognitionRef.current.stop(); }
     }, [currentAudio]);
 
-    useEffect(() => { messagesEndRef.current?.scrollIntoView({ behavior: "smooth" }); }, [messages, isTyping]);
+    React.useEffect(() => { messagesEndRef.current?.scrollIntoView({ behavior: "smooth" }); }, [messages, isTyping]);
 
     const playAudio = async (text) => {
         if (currentAudio) { currentAudio.pause(); }
@@ -430,7 +385,7 @@ const ChatWindow = ({ botData, onUpdate, onBackToConfig }) => {
         if (audioData) {
             const buffer = base64ToArrayBuffer(audioData);
             const pcm16 = new Int16Array(buffer);
-            const wavBlob = pcmToWav(pcm16, 24000); // Gemini TTS uses 24kHz sample rate
+            const wavBlob = pcmToWav(pcm16, 24000);
             const audioUrl = URL.createObjectURL(wavBlob);
             const audio = new Audio(audioUrl);
             setCurrentAudio(audio);
@@ -563,13 +518,15 @@ const ChatWindow = ({ botData, onUpdate, onBackToConfig }) => {
             <div className="p-4 bg-transparent text-white flex justify-between items-center rounded-t-none sm:rounded-t-2xl border-b border-white/10">
                 <div className="flex items-center gap-3"><button onClick={onBackToConfig} title="Volver a Configuración" className="p-2 hover:bg-white/10 rounded-full transition-colors"><BackIcon /></button> <h3 className="font-bold text-lg">{agentProfile.name || "Tu Agente IA"}</h3></div>
                 <div className="flex items-center gap-1">
-                    <button onClick={() => onUpdate('isTtsEnabled', !isTtsEnabled)} title={isTtsEnabled ? "Desactivar Voz" : "Activar Voz"} className={`p-2 hover:bg-white/10 rounded-full transition-colors ${isTtsEnabled ? 'text-[var(--primary-color)]' : 'text-white'}`}>{isTtsEnabled ? <VolumeOnIcon /> : <VolumeOffIcon />}</button>
+                    <button onClick={onTtsToggle} title={isTtsEnabled ? "Desactivar Voz" : "Activar Voz"} className={`p-2 hover:bg-white/10 rounded-full transition-colors ${isTtsEnabled ? 'text-[var(--primary-color)]' : 'text-white'}`}>{isTtsEnabled ? <VolumeOnIcon /> : <VolumeOffIcon />}</button>
+                    <button onClick={onShare} title="Compartir Demo" className="p-2 hover:bg-white/10 rounded-full transition-colors"><ShareIcon /></button>
+                    <button onClick={onReset} title="Resetear Demo" className="p-2 hover:bg-white/10 rounded-full transition-colors"><ResetIcon /></button>
                 </div>
             </div>
             <div className="flex-1 p-4 overflow-y-auto">
                 {messages.map((msg, index) => {
                     if (msg.type === 'calendar') {
-                        return <div key={index} className="flex justify-start mb-3"><div className="max-w-[80%] py-2 px-4 rounded-2xl bg-gray-800/80 text-gray-200 rounded-bl-none"><CalendarWidget onSelect={handleCalendarSelect} themeColors={themeColors}/></div></div>
+                        return <div key={index} className="flex justify-start mb-3"><div className="max-w-[80%] py-2 px-4 rounded-2xl bg-gray-800/80 text-gray-200 rounded-bl-none"><CalendarWidget onSelect={handleCalendarSelect} themeColors={themeColors} /></div></div>
                     }
                     if (msg.type === 'crm-notification') {
                         return <div key={index} className="flex justify-start mb-3"><CrmNotification leadData={msg.data} /></div>
@@ -617,197 +574,98 @@ const ChatWindow = ({ botData, onUpdate, onBackToConfig }) => {
     )
 }
 
-const MarkdownRenderer = ({ text }) => {
-    const formatText = (inputText) => {
-        let formattedText = inputText.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>').replace(/\*(.*?)\*/g, '<em>$1</em>');
-        formattedText = formattedText.split('\n').map(line => {
-            if (line.trim().startsWith('* ') || line.trim().startsWith('- ')) { return `<li>${line.trim().substring(2)}</li>`; }
-            return line;
-        }).join('');
-        if (formattedText.includes('<li>')) { formattedText = '<ul>' + formattedText.replace(/<\/li><li>/g, '</li><li>') + '</ul>'; }
-        return formattedText.replace(/\n/g, '<br />').replace(/<ul><br \/>/g, '<ul>').replace(/<br \/><\/ul>/g, '</ul>');
-    };
-    return <div className="prose-chat" dangerouslySetInnerHTML={{ __html: formatText(text || '') }} />;
-};
 
-const CalendarWidget = ({ onSelect, themeColors }) => {
-    const today = new Date();
-    const days = Array.from({ length: 4 }, (_, i) => new Date(new Date().setDate(today.getDate() + i + 1)));
-    const timeSlots = ["10:00", "11:30", "14:00", "15:30", "17:00"];
-    
-    return (
-        <div className="p-2">
-            <p className="font-bold mb-2 text-white">Seleccioná un día y horario:</p>
-            <div className="flex justify-around mb-3">
-                {days.map((day, i) => (
-                    <div key={i} className="text-center">
-                        <div className="text-xs text-gray-400">{day.toLocaleDateString('es-ES', { weekday: 'short' })}</div>
-                        <div className="font-bold text-lg">{day.getDate()}</div>
-                    </div>
-                ))}
-            </div>
-            <div className="grid grid-cols-3 gap-2">
-                {timeSlots.map(time => (
-                    <button key={time} onClick={() => onSelect(days[1], time)} className="bg-[var(--primary-color-faded)] text-white text-sm py-1 rounded hover:bg-[var(--primary-color)] transition-colors" style={{'--primary-color-faded': `${themeColors.primary}80`}}>
-                        {time}
-                    </button>
-                ))}
-            </div>
-        </div>
-    );
-};
+// --- Componente Principal App ---
+export default function App() {
+    const [appState, setAppState] = React.useState('welcome');
+    const [knowledge, setKnowledge] = React.useState('');
+    const [uploadedImage, setUploadedImage] = React.useState(null);
+    const [importedUrl, setImportedUrl] = React.useState('');
+    const [isTtsEnabled, setIsTtsEnabled] = React.useState(false);
+    const [showCopied, setShowCopied] = React.useState(false);
+    const [leadQualQuestions, setLeadQualQuestions] = React.useState(['', '', '']);
+    const [agentProfile, setAgentProfile] = React.useState({ name: '', company: '' });
+    const [themeColors, setThemeColors] = React.useState({ primary: '#6366F1', secondary: '#A78BFA' });
+    const mainRef = React.useRef(null);
 
-const CrmNotification = ({ leadData }) => (
-    <div className="bg-gray-700/80 p-3 rounded-lg border border-white/10 animate-fade-in">
-        <div className="flex items-center gap-3">
-            <div className="bg-green-500/20 text-green-400 p-2 rounded-full"><CrmIcon /></div>
-            <div>
-                <p className="font-bold text-sm text-green-400">Nuevo Lead Cualificado</p>
-                <p className="text-xs text-gray-300">
-                    {leadData.name} ({leadData.email}) ha sido agregado al CRM.
-                </p>
-            </div>
-        </div>
-    </div>
-);
-
-
-// --- Componente Raíz de la Aplicación ---
-const AppContent = () => {
-    const { auth, db, initialized, error: firebaseError } = useFirebase();
-    const [user, setUser] = useState(undefined); // undefined: loading, null: logged out, object: logged in
-    const [appState, setAppState] = useState('config');
-    const [botData, setBotData] = useState(null);
-    const mainRef = useRef(null);
-
-    const defaultBotData = {
-        knowledge: '',
-        uploadedImage: null,
-        importedUrl: '',
-        isTtsEnabled: false,
-        leadQualQuestions: ['', '', ''],
-        agentProfile: { name: 'BotBoxx', company: 'Demo' },
-        themeColors: { primary: '#6366F1', secondary: '#A78BFA' }
-    };
-
-    useEffect(() => {
-        if (!initialized) return; 
-        if (!auth) {
-            console.error("Auth service is not available. Check FirebaseProvider initialization.");
-            setUser(null); 
-            return;
-        }
-
-        const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
-            if (currentUser) {
-                setUser(currentUser);
-                const docRef = doc(db, `bots/${currentUser.uid}`);
-                const docSnap = await getDoc(docRef);
-                if (docSnap.exists()) {
-                    setBotData({ ...defaultBotData, ...docSnap.data() });
-                } else {
-                    await setDoc(docRef, defaultBotData);
-                    setBotData(defaultBotData);
-                }
-            } else {
-                setUser(null);
-                setBotData(null);
-            }
-        });
-
-        return () => unsubscribe();
-    }, [initialized, auth, db]);
-    
-     const handleUpdateBotData = async (key, value) => {
-        if (!user || !db) return;
-
-        const currentBotData = botData || defaultBotData;
-        const updatedData = { ...currentBotData, [key]: value };
-        setBotData(updatedData);
-        
-        try {
-            const docRef = doc(db, `bots/${user.uid}`);
-            await updateDoc(docRef, { [key]: value });
-        } catch (error) {
-            if (error.code === 'not-found') {
-                try {
-                    await setDoc(doc(db, `bots/${user.uid}`), updatedData);
-                } catch (set_error) {
-                    console.error("Error creating document after update failed:", set_error);
-                }
-            } else {
-                 console.error("Error updating bot data in Firestore:", error);
-                 setBotData(botData); 
-            }
-        }
-    };
-    
-    const handleLogout = () => {
-        if (auth) {
-            signOut(auth).catch((error) => console.error("Error signing out:", error));
-        }
-    };
-    
-    const themeColors = botData?.themeColors || defaultBotData.themeColors;
-
-    useEffect(() => {
+    React.useEffect(() => {
         const handleMouseMove = (event) => { if (mainRef.current) { mainRef.current.style.setProperty('--mouse-x', `${event.clientX}px`); mainRef.current.style.setProperty('--mouse-y', `${event.clientY}px`); } };
         window.addEventListener('mousemove', handleMouseMove);
         const script = document.createElement('script'); script.src = "https://mozilla.github.io/pdf.js/build/pdf.mjs"; script.type = "module";
         script.onload = () => { 
-            // eslint-disable-next-line no-undef
-            if (typeof pdfjsLib !== 'undefined') {
-                 // eslint-disable-next-line no-undef
+             // eslint-disable-next-line no-undef
+            if(typeof pdfjsLib !== 'undefined') {
+                // eslint-disable-next-line no-undef
                 window.pdfjsLib = pdfjsLib; 
                 window.pdfjsLib.GlobalWorkerOptions.workerSrc = "https://mozilla.github.io/pdf.js/build/pdf.worker.mjs"; 
             }
         };
         document.body.appendChild(script);
+        const urlParams = new URLSearchParams(window.location.search); const demoData = urlParams.get('demo');
+        if (demoData) {
+            try { const decodedKnowledge = atob(demoData); setKnowledge(decodedKnowledge); setAppState('chat'); } 
+            catch (e) { console.error("Error al decodificar la demo desde la URL:", e); window.history.replaceState({}, document.title, window.location.pathname); }
+        }
         return () => { window.removeEventListener('mousemove', handleMouseMove); };
     }, []);
-
-    // --- Render Logic ---
-    if (user === undefined || (user && !botData)) {
-        return (
-            <div className="min-h-screen w-full flex items-center justify-center bg-gray-900 text-white font-sans">
-                <div className="flex items-center gap-3 animate-pulse">
-                    <LogoIcon themeColors={defaultBotData.themeColors} />
-                    <p className="text-xl">Cargando BotBoxx...</p>
-                </div>
-            </div>
-        );
-    }
     
-    const renderContent = () => {
-        if (!user) {
-            return <LoginScreen />;
+    const handleStartDemo = () => setAppState('config');
+    const handleStartBot = (knowledgeData, imageData, url, leadQuestions, profile, colors) => {
+        setKnowledge(knowledgeData); setUploadedImage(imageData); setImportedUrl(url); setLeadQualQuestions(leadQuestions); setAgentProfile(profile); setThemeColors(colors);
+        setAppState('chat');
+    };
+    const handleReset = () => {
+        setKnowledge(''); setUploadedImage(null); setImportedUrl(''); setIsTtsEnabled(false); 
+        setLeadQualQuestions(['', '', '']); setAgentProfile({ name: '', company: '' });
+        setThemeColors({ primary: '#6366F1', secondary: '#A78BFA' });
+        setAppState('welcome');
+        window.history.replaceState({}, document.title, window.location.pathname);
+    };
+    const handleBackToConfig = () => setAppState('config');
+
+    const handleShare = () => {
+        if (uploadedImage || importedUrl || leadQualQuestions.some(q => q.trim() !== '') || agentProfile.name || agentProfile.company) { 
+            alert("La función de compartir no está disponible para demos con configuraciones avanzadas (imágenes, URLs, preguntas de venta o perfil de agente)."); return; 
         }
+        try {
+            const encodedKnowledge = btoa(knowledge); const shareUrl = `${window.location.origin}${window.location.pathname}?demo=${encodedKnowledge}`;
+            const textArea = document.createElement("textarea"); textArea.value = `¡Probá la demo de este agente IA que configuré con BotBoxx! 👉 ${shareUrl}`;
+            document.body.appendChild(textArea); textArea.focus(); textArea.select(); document.execCommand('copy');
+            document.body.removeChild(textArea); setShowCopied(true); setTimeout(() => setShowCopied(false), 2000);
+        } catch (e) { console.error("Error al compartir:", e); alert("No se pudo copiar el enlace."); }
+    };
+    
+    const handleLeadQuestionsChange = (index, value) => {
+        const newQuestions = [...leadQualQuestions]; newQuestions[index] = value;
+        setLeadQualQuestions(newQuestions);
+    };
+
+    const handleAgentProfileChange = (field, value) => {
+        setAgentProfile(prev => ({ ...prev, [field]: value }));
+    };
+
+    const handleThemeColorsChange = (key, value) => {
+        setThemeColors(prev => ({...prev, [key]: value}));
+    };
+
+    const renderContent = () => {
         switch (appState) {
-            case 'config':
-                return <KnowledgeUploader botData={botData} onUpdate={handleUpdateBotData} onLogout={handleLogout} onStartChat={() => setAppState('chat')} />;
-            case 'chat':
-                return <ChatWindow botData={botData} onUpdate={handleUpdateBotData} onBackToConfig={() => setAppState('config')} />;
-            default:
-                return <KnowledgeUploader botData={botData} onUpdate={handleUpdateBotData} onLogout={handleLogout} onStartChat={() => setAppState('chat')} />;
+            case 'welcome': return <WelcomeScreen onStart={handleStartDemo} themeColors={themeColors} />;
+            case 'config': return <KnowledgeUploader onBotStart={handleStartBot} initialKnowledge={knowledge} initialImage={uploadedImage} initialLeadQuestions={leadQualQuestions} onLeadQuestionsChange={handleLeadQuestionsChange} initialAgentProfile={agentProfile} onAgentProfileChange={handleAgentProfileChange} themeColors={themeColors} onThemeColorsChange={handleThemeColorsChange} />;
+            case 'chat': return <ChatWindow knowledge={knowledge} uploadedImage={uploadedImage} leadQualQuestions={leadQualQuestions} agentProfile={agentProfile} onReset={handleReset} onShare={handleShare} onBackToConfig={handleBackToConfig} isTtsEnabled={isTtsEnabled} onTtsToggle={() => setIsTtsEnabled(!isTtsEnabled)} themeColors={themeColors} />;
+            default: return <WelcomeScreen onStart={handleStartDemo} themeColors={themeColors} />;
         }
     };
 
     return (
-        <main 
-            ref={mainRef} 
-            className="bg-gray-900 min-h-screen w-full flex items-center justify-center font-sans relative overflow-hidden"
-            style={{
-                '--primary-color': themeColors.primary,
-                '--secondary-color': themeColors.secondary,
-            }}
-        >
-            <div className="absolute inset-0 bg-grid-pattern opacity-10"></div>
-            <div className="pointer-events-none absolute inset-0 bg-spotlight"></div>
-
-            <div className="w-full h-full z-20 flex items-center justify-center p-4">
-             {renderContent()}
-            </div>
-            
+        <main ref={mainRef} className="bg-gray-900 min-h-screen w-full flex items-center justify-center font-sans relative overflow-hidden" style={{'--primary-color': themeColors.primary, '--secondary-color': themeColors.secondary}}>
+            {appState === 'chat' && importedUrl ? <BrandedBackground url={importedUrl} /> : (<> <div className="absolute inset-0 bg-grid-pattern opacity-10"></div> <div className="pointer-events-none absolute inset-0 bg-spotlight"></div> </>)}
+            <div className="w-full h-full z-20 flex items-center justify-center p-4"> {renderContent()} </div>
+            {showCopied && (
+                <div className="fixed top-5 left-1/2 -translate-x-1/2 bg-gray-800 text-white py-2 px-4 rounded-lg shadow-lg animate-fade-in-out z-40 border border-white/10">
+                    ¡Enlace de la demo copiado al portapapeles!
+                </div>
+            )}
             <style>{`
                 :root {
                     --primary-color: ${themeColors.primary};
@@ -817,6 +675,8 @@ const AppContent = () => {
                 .font-sans { font-family: 'Inter', sans-serif; }
                 .bg-grid-pattern { background-image: linear-gradient(to right, rgba(255, 255, 255, 0.1) 1px, transparent 1px), linear-gradient(to bottom, rgba(255, 255, 255, 0.1) 1px, transparent 1px); background-size: 40px 40px; }
                 .bg-spotlight { background: radial-gradient(150px circle at var(--mouse-x) var(--mouse-y), rgba(47, 41, 122, 0.20), transparent 80%); }
+                @keyframes fade-in-out { 0%, 100% { opacity: 0; transform: translateY(-20px) translateX(-50%); } 10%, 90% { opacity: 1; transform: translateY(0) translateX(-50%); } }
+                .animate-fade-in-out { animation: fade-in-out 2s ease-in-out forwards; }
                 @keyframes fade-in { 0% { opacity: 0; } 100% { opacity: 1; } }
                 .animate-fade-in { animation: fade-in 0.5s ease-in-out forwards; }
                 .prose-chat strong { font-weight: 700; color: #fff; }
@@ -828,23 +688,21 @@ const AppContent = () => {
     );
 }
 
-// El componente final que se renderiza en index.js
-// Es el que contiene el Provider de Firebase
-export default function App() {
+const BrandedBackground = ({ url }) => {
+    if (!url) return null;
+    let domain = '';
+    try { domain = new URL(url).hostname.replace('www.', ''); } catch (e) { return null; }
     return (
-        <FirebaseProvider>
-            <AppContent />
-        </FirebaseProvider>
+        <>
+            <div className="absolute inset-0 bg-grid-pattern opacity-10 z-0"></div>
+            <div className="pointer-events-none absolute inset-0 bg-spotlight z-0"></div>
+            <div className="absolute inset-0 flex items-center justify-center z-0">
+                <div className="text-center transform -rotate-12 select-none">
+                    <h1 className="text-[12vw] font-black text-white/5 leading-none">{domain}</h1>
+                    <h1 className="text-[12vw] font-black text-white/5 leading-none -mt-[3vw]">{domain}</h1>
+                </div>
+            </div>
+        </>
     );
-}
-
-
-
-
-
-
-
-
-
-
+};
 
