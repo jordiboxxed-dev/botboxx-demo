@@ -1,4 +1,31 @@
-import React from 'react';
+import React, { useState, useEffect, useRef } from 'react';
+
+// --- Base de datos de Demos Pre-configuradas ---
+const demoPresets = {
+  // Demo de ejemplo 1: Coca-Cola
+  'cocacola': {
+    knowledge: `Coca-Cola es una bebida azucarada gaseosa vendida a nivel mundial. La compañía produce un concentrado que luego vende a varias embotelladoras licenciadas, las cuales mezclan el concentrado con agua filtrada y edulcorantes para, posteriormente, vender y distribuir la bebida en latas y botellas en los comercios minoristas. Nuestros principales productos son Coca-Cola Original, Coca-Cola Light y Coca-Cola Zero. El precio por pack de 6 latas es de $10 USD.`,
+    agentProfile: { name: 'Asistente Coca-Cola', company: 'Coca-Cola' },
+    themeColors: { primary: '#F40009', secondary: '#FFFFFF' },
+    leadQualQuestions: [
+        '¿Cuántos empleados tiene tu empresa?',
+        '¿Cuál es tu presupuesto mensual para bebidas?',
+        '¿Estás interesado en una suscripción mensual?'
+    ],
+  },
+  
+  // Demo de ejemplo 2: Una empresa de tecnología
+  'techsolutions': {
+    knowledge: `TechSolutions ofrece servicios de ciberseguridad de vanguardia para proteger a las empresas de amenazas digitales. Nuestros servicios incluyen análisis de vulnerabilidades, monitoreo 24/7 y respuesta a incidentes. El plan básico comienza en $500 USD mensuales.`,
+    agentProfile: { name: 'CyberBot', company: 'TechSolutions' },
+    themeColors: { primary: '#00BFFF', secondary: '#1E90FF' },
+    leadQualQuestions: ['¿Cuál es tu principal preocupación en ciberseguridad?', '¿Ya cuentas con alguna solución de seguridad?', ''],
+  },
+
+  // ¡AQUÍ PUEDES AGREGAR TUS NUEVAS DEMOS!
+  // Simplemente copia uno de los bloques de arriba y modifica los datos.
+};
+
 
 // --- Iconos SVG ---
 const LogoIcon = ({ themeColors }) => ( <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M24 4C12.9543 4 4 12.9543 4 24C4 35.0457 12.9543 44 24 44C35.0457 44 44 35.0457 44 24C44 12.9543 35.0457 4 24 4Z" stroke="url(#paint0_linear_logo)" strokeWidth="2"/><circle cx="16" cy="24" r="2" fill="url(#paint1_linear_logo)"/><circle cx="24" cy="24" r="2" fill="url(#paint2_linear_logo)"/><circle cx="32" cy="24" r="2" fill="url(#paint3_linear_logo)"/><defs><linearGradient id="paint0_linear_logo" x1="4" y1="4" x2="44" y2="44" gradientUnits="userSpaceOnUse"><stop stopColor={themeColors.secondary}/><stop offset="1" stopColor={themeColors.primary}/></linearGradient><linearGradient id="paint1_linear_logo" x1="14" y1="24" x2="18" y2="24" gradientUnits="userSpaceOnUse"><stop stopColor={themeColors.secondary}/><stop offset="1" stopColor={themeColors.primary}/></linearGradient><linearGradient id="paint2_linear_logo" x1="22" y1="24" x2="26" y2="24" gradientUnits="userSpaceOnUse"><stop stopColor={themeColors.primary}/><stop offset="1" stopColor={themeColors.secondary}/></linearGradient><linearGradient id="paint3_linear_logo" x1="30" y1="24" x2="34" y2="24" gradientUnits="userSpaceOnUse"><stop stopColor={themeColors.primary}/><stop offset="1" stopColor="#4F46E5"/></linearGradient></defs></svg> );
@@ -25,7 +52,7 @@ const callGeminiAPI = async (payload, useGrounding = false, retries = 3, delay =
         throw new Error("API key for Gemini is missing. Please set REACT_APP_GEMINI_API_KEY environment variable.");
     }
     const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=${apiKey}`;
-
+    
     if (useGrounding) {
         payload.tools = [{ "google_search": {} }];
     }
@@ -287,61 +314,6 @@ const KnowledgeUploader = ({ onBotStart, initialKnowledge = '', initialImage = n
     );
 };
 
-const MarkdownRenderer = ({ text }) => {
-    const formatText = (inputText) => {
-        let formattedText = inputText.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>').replace(/\*(.*?)\*/g, '<em>$1</em>');
-        formattedText = formattedText.split('\n').map(line => {
-            if (line.trim().startsWith('* ') || line.trim().startsWith('- ')) { return `<li>${line.trim().substring(2)}</li>`; }
-            return line;
-        }).join('');
-        if (formattedText.includes('<li>')) { formattedText = '<ul>' + formattedText.replace(/<\/li><li>/g, '</li><li>') + '</ul>'; }
-        return formattedText.replace(/\n/g, '<br />').replace(/<ul><br \/>/g, '<ul>').replace(/<br \/><\/ul>/g, '</ul>');
-    };
-    return <div className="prose-chat" dangerouslySetInnerHTML={{ __html: formatText(text || '') }} />;
-};
-
-const CalendarWidget = ({ onSelect, themeColors }) => {
-    const today = new Date();
-    const days = Array.from({ length: 4 }, (_, i) => new Date(new Date().setDate(today.getDate() + i + 1)));
-    const timeSlots = ["10:00", "11:30", "14:00", "15:30", "17:00"];
-    
-    return (
-        <div className="p-2">
-            <p className="font-bold mb-2 text-white">Seleccioná un día y horario:</p>
-            <div className="flex justify-around mb-3">
-                {days.map((day, i) => (
-                    <div key={i} className="text-center">
-                        <div className="text-xs text-gray-400">{day.toLocaleDateString('es-ES', { weekday: 'short' })}</div>
-                        <div className="font-bold text-lg">{day.getDate()}</div>
-                    </div>
-                ))}
-            </div>
-            <div className="grid grid-cols-3 gap-2">
-                {timeSlots.map(time => (
-                    <button key={time} onClick={() => onSelect(days[1], time)} className="bg-[var(--primary-color-faded)] text-white text-sm py-1 rounded hover:bg-[var(--primary-color)] transition-colors" style={{'--primary-color-faded': `${themeColors.primary}80`}}>
-                        {time}
-                    </button>
-                ))}
-            </div>
-        </div>
-    );
-};
-
-const CrmNotification = ({ leadData }) => (
-    <div className="bg-gray-700/80 p-3 rounded-lg border border-white/10 animate-fade-in">
-        <div className="flex items-center gap-3">
-            <div className="bg-green-500/20 text-green-400 p-2 rounded-full"><CrmIcon /></div>
-            <div>
-                <p className="font-bold text-sm text-green-400">Nuevo Lead Cualificado</p>
-                <p className="text-xs text-gray-300">
-                    {leadData.name} ({leadData.email}) ha sido agregado al CRM.
-                </p>
-            </div>
-        </div>
-    </div>
-);
-
-
 const ChatWindow = ({ knowledge, uploadedImage, leadQualQuestions, agentProfile, onReset, onShare, onBackToConfig, isTtsEnabled, onTtsToggle, themeColors }) => {
     const [messages, setMessages] = React.useState([
         { type: 'text', text: `¡Hola! Soy ${agentProfile.name || 'tu asistente virtual'}${agentProfile.company ? ` de ${agentProfile.company}`: ''}. Ya procesé la información. Preguntame lo que quieras 😉`, sender: 'bot' }
@@ -574,6 +546,24 @@ const ChatWindow = ({ knowledge, uploadedImage, leadQualQuestions, agentProfile,
     )
 }
 
+const BrandedBackground = ({ url }) => {
+    if (!url) return null;
+    let domain = '';
+    try { domain = new URL(url).hostname.replace('www.', ''); } catch (e) { return null; }
+    return (
+        <>
+            <div className="absolute inset-0 bg-grid-pattern opacity-10 z-0"></div>
+            <div className="pointer-events-none absolute inset-0 bg-spotlight z-0"></div>
+            <div className="absolute inset-0 flex items-center justify-center z-0">
+                <div className="text-center transform -rotate-12 select-none">
+                    <h1 className="text-[12vw] font-black text-white/5 leading-none">{domain}</h1>
+                    <h1 className="text-[12vw] font-black text-white/5 leading-none -mt-[3vw]">{domain}</h1>
+                </div>
+            </div>
+        </>
+    );
+};
+
 
 // --- Componente Principal App ---
 export default function App() {
@@ -591,21 +581,45 @@ export default function App() {
     React.useEffect(() => {
         const handleMouseMove = (event) => { if (mainRef.current) { mainRef.current.style.setProperty('--mouse-x', `${event.clientX}px`); mainRef.current.style.setProperty('--mouse-y', `${event.clientY}px`); } };
         window.addEventListener('mousemove', handleMouseMove);
-        const script = document.createElement('script'); script.src = "https://mozilla.github.io/pdf.js/build/pdf.mjs"; script.type = "module";
+        
+        const script = document.createElement('script'); 
+        script.src = "https://mozilla.github.io/pdf.js/build/pdf.mjs"; 
+        script.type = "module";
         script.onload = () => { 
              // eslint-disable-next-line no-undef
             if(typeof pdfjsLib !== 'undefined') {
-                // eslint-disable-next-line no-undef
+                 // eslint-disable-next-line no-undef
                 window.pdfjsLib = pdfjsLib; 
                 window.pdfjsLib.GlobalWorkerOptions.workerSrc = "https://mozilla.github.io/pdf.js/build/pdf.worker.mjs"; 
             }
         };
         document.body.appendChild(script);
-        const urlParams = new URLSearchParams(window.location.search); const demoData = urlParams.get('demo');
-        if (demoData) {
-            try { const decodedKnowledge = atob(demoData); setKnowledge(decodedKnowledge); setAppState('chat'); } 
-            catch (e) { console.error("Error al decodificar la demo desde la URL:", e); window.history.replaceState({}, document.title, window.location.pathname); }
+        
+        const urlParams = new URLSearchParams(window.location.search); 
+        const demoSlug = urlParams.get('demo');
+
+        if (demoSlug && demoPresets[demoSlug]) {
+            const preset = demoPresets[demoSlug];
+            setKnowledge(preset.knowledge || '');
+            setAgentProfile(preset.agentProfile || { name: '', company: '' });
+            setThemeColors(preset.themeColors || { primary: '#6366F1', secondary: '#A78BFA' });
+            setLeadQualQuestions(preset.leadQualQuestions || ['', '', '']);
+            setAppState('chat');
+        } else {
+            const demoData = urlParams.get('data');
+            if (demoData) {
+                try { 
+                    const decodedKnowledge = atob(demoData); 
+                    setKnowledge(decodedKnowledge); 
+                    setAppState('chat'); 
+                } 
+                catch (e) { 
+                    console.error("Error al decodificar la demo desde la URL:", e); 
+                    window.history.replaceState({}, document.title, window.location.pathname); 
+                }
+            }
         }
+        
         return () => { window.removeEventListener('mousemove', handleMouseMove); };
     }, []);
     
@@ -625,10 +639,10 @@ export default function App() {
 
     const handleShare = () => {
         if (uploadedImage || importedUrl || leadQualQuestions.some(q => q.trim() !== '') || agentProfile.name || agentProfile.company) { 
-            alert("La función de compartir no está disponible para demos con configuraciones avanzadas (imágenes, URLs, preguntas de venta o perfil de agente)."); return; 
+            alert("La función de compartir no está disponible para demos con configuraciones avanzadas. Comparte demos solo basadas en texto simple."); return; 
         }
         try {
-            const encodedKnowledge = btoa(knowledge); const shareUrl = `${window.location.origin}${window.location.pathname}?demo=${encodedKnowledge}`;
+            const encodedKnowledge = btoa(knowledge); const shareUrl = `${window.location.origin}${window.location.pathname}?data=${encodedKnowledge}`;
             const textArea = document.createElement("textarea"); textArea.value = `¡Probá la demo de este agente IA que configuré con BotBoxx! 👉 ${shareUrl}`;
             document.body.appendChild(textArea); textArea.focus(); textArea.select(); document.execCommand('copy');
             document.body.removeChild(textArea); setShowCopied(true); setTimeout(() => setShowCopied(false), 2000);
@@ -687,22 +701,4 @@ export default function App() {
         </main>
     );
 }
-
-const BrandedBackground = ({ url }) => {
-    if (!url) return null;
-    let domain = '';
-    try { domain = new URL(url).hostname.replace('www.', ''); } catch (e) { return null; }
-    return (
-        <>
-            <div className="absolute inset-0 bg-grid-pattern opacity-10 z-0"></div>
-            <div className="pointer-events-none absolute inset-0 bg-spotlight z-0"></div>
-            <div className="absolute inset-0 flex items-center justify-center z-0">
-                <div className="text-center transform -rotate-12 select-none">
-                    <h1 className="text-[12vw] font-black text-white/5 leading-none">{domain}</h1>
-                    <h1 className="text-[12vw] font-black text-white/5 leading-none -mt-[3vw]">{domain}</h1>
-                </div>
-            </div>
-        </>
-    );
-};
 
