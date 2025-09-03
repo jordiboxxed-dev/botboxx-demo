@@ -51,7 +51,7 @@ const callGeminiAPI = async (payload, useGrounding = false, retries = 3, delay =
     if (!apiKey) {
         throw new Error("API key for Gemini is missing. Please set REACT_APP_GEMINI_API_KEY environment variable.");
     }
-    const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=${apiKey}`;
+    const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-05-20:generateContent?key=${apiKey}`;
     
     if (useGrounding) {
         payload.tools = [{ "google_search": {} }];
@@ -148,16 +148,16 @@ const WelcomeScreen = ({ onStart, themeColors }) => (
 );
 
 const KnowledgeUploader = ({ onBotStart, initialKnowledge = '', initialImage = null, initialLeadQuestions, onLeadQuestionsChange, initialAgentProfile, onAgentProfileChange, themeColors, onThemeColorsChange }) => {
-    const [knowledge, setKnowledge] = React.useState(initialKnowledge);
-    const [uploadedImage, setUploadedImage] = React.useState(initialImage);
-    const [urlInput, setUrlInput] = React.useState('');
-    const [importedUrl, setImportedUrl] = React.useState('');
-    const [error, setError] = React.useState('');
-    const [isGenerating, setIsGenerating] = React.useState(false);
-    const [insights, setInsights] = React.useState(null);
-    const [isLoadingFile, setIsLoadingFile] = React.useState(false);
-    const [isLoadingUrl, setIsLoadingUrl] = React.useState(false);
-    const fileInputRef = React.useRef(null);
+    const [knowledge, setKnowledge] = useState(initialKnowledge);
+    const [uploadedImage, setUploadedImage] = useState(initialImage);
+    const [urlInput, setUrlInput] = useState('');
+    const [importedUrl, setImportedUrl] = useState('');
+    const [error, setError] = useState('');
+    const [isGenerating, setIsGenerating] = useState(false);
+    const [insights, setInsights] = useState(null);
+    const [isLoadingFile, setIsLoadingFile] = useState(false);
+    const [isLoadingUrl, setIsLoadingUrl] = useState(false);
+    const fileInputRef = useRef(null);
 
     const handleStart = () => {
         if (knowledge.trim().length < 20 && !uploadedImage) {
@@ -375,13 +375,18 @@ const ChatWindow = ({ knowledge, uploadedImage, leadQualQuestions, agentProfile,
         if (context) { systemText += `\n\n---CONTEXTO DE TEXTO---\n${context}\n---FIN DE CONTEXTO---`; }
         if (initialImage) { systemText += `\n\nAdicionalmente, tienes una imagen de contexto general.`; }
         systemText += `\n\nResponde las preguntas del usuario basándote primero en la información proporcionada. Si la pregunta no se puede responder con eso, usa tu conocimiento general. Responde siempre en español. Formatea las listas con asteriscos (*).`;
-        const systemInstruction = { role: 'model', parts: [{ text: systemText }] };
+        
         const historyContents = chatHistory.filter(msg => msg.type === 'text').map(msg => ({ role: msg.sender === 'user' ? 'user' : 'model', parts: [{ text: msg.text }] }));
         const userParts = [{ text: question }];
         const imageForPrompt = currentImage || initialImage;
         if (imageForPrompt) { userParts.push({ inlineData: { mimeType: imageForPrompt.type, data: imageForPrompt.data.split(',')[1] } }); }
         
-        const payload = { contents: [ ...historyContents, { role: 'user', parts: userParts }], system_instruction: systemInstruction };
+        const payload = { 
+            contents: [ ...historyContents, { role: 'user', parts: userParts }],
+            systemInstruction: {
+                parts: [{ text: systemText }]
+            }
+        };
         
         try {
             const result = await callGeminiAPI(payload, true);
@@ -701,6 +706,8 @@ export default function App() {
         </main>
     );
 }
+
+
 
 
 
