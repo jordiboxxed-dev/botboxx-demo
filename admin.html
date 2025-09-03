@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="es" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generador de Demos - BotBoxx</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://mozilla.github.io/pdf.js/build/pdf.mjs" type="module"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap');
+        html {
+            color-scheme: dark;
+        }
+        body { 
+            font-family: 'Inter', sans-serif;
+            background-color: #0a0a0f;
+            background-image: 
+                radial-gradient(circle at var(--mouse-x) var(--mouse-y), rgba(128, 0, 255, 0.15), transparent 20%),
+                radial-gradient(circle at 100% 0, rgba(100, 116, 225, 0.1), transparent 40%),
+                radial-gradient(circle at 0 100%, rgba(167, 139, 250, 0.1), transparent 40%);
+            background-attachment: fixed;
+        }
+        .input-label {
+            @apply block text-sm font-medium text-gray-400 mb-2;
+        }
+        .input-field {
+            @apply w-full bg-gray-700 border border-gray-600 text-gray-200 rounded-xl p-2.5 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all duration-300;
+        }
+        .section-card {
+            @apply bg-gray-800/60 backdrop-blur-lg p-6 rounded-2xl border border-gray-700/80 shadow-2xl shadow-black/30 transition-all duration-300 hover:border-indigo-500/50;
+        }
+        .section-title {
+            @apply text-xl font-bold text-indigo-400 mb-4 flex items-center gap-3;
+        }
+    </style>
+</head>
+<body class="text-white min-h-screen flex items-center justify-center p-4">
+
+    <div class="w-full max-w-5xl mx-auto space-y-8 my-16">
+        <div class="text-center">
+            <h1 class="text-4xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-gray-200 to-white">Generador de Demos</h1>
+            <p class="text-lg text-gray-400 mt-2">Crea configuraciones de demos para tus leads de forma rápida y sencilla.</p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
+            <!-- Columna de Inputs -->
+            <div class="space-y-6">
+                <div class="section-card">
+                    <h2 class="section-title">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.72"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.72-1.72"/></svg>
+                        <span>1. Identificador (Slug)</span>
+                    </h2>
+                    <div>
+                        <label for="slug" class="input-label">Slug para la URL (ej: cocacola)</label>
+                        <input type="text" id="slug" class="input-field" placeholder="en-minusculas-y-sin-espacios">
+                        <p class="text-xs text-gray-500 mt-1">Este será el nombre en el enlace: `?demo=slug`</p>
+                    </div>
+                </div>
+
+                <div class="section-card">
+                    <h2 class="section-title">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="5"/><path d="M20 21a8 8 0 0 0-16 0"/></svg>
+                        <span>2. Perfil del Agente</span>
+                    </h2>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div>
+                            <label for="agentName" class="input-label">Nombre del Bot</label>
+                            <input type="text" id="agentName" class="input-field" placeholder="Boti">
+                        </div>
+                        <div>
+                            <label for="companyName" class="input-label">Nombre de la Empresa</label>
+                            <input type="text" id="companyName" class="input-field" placeholder="BotBoxx">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section-card">
+                    <h2 class="section-title">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="13.5" cy="6.5" r=".5"/><circle cx="17.5" cy="10.5" r=".5"/><circle cx="8.5" cy="7.5" r=".5"/><circle cx="6.5" cy="12.5" r=".5"/><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.668 0-.92-.722-1.667-1.648-1.667-.926 0-1.648-.746-1.648-1.668 0-.92-.722-1.667-1.648-1.667-.926 0-1.648-.746-1.648-1.668 0-.92-.722-1.667-1.648-1.667A6.5 6.5 0 0 1 12 2Z"/></svg>
+                        <span>3. Colores de Marca</span>
+                    </h2>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="flex flex-col items-center">
+                            <label for="primaryColor" class="input-label mb-2">Color Primario</label>
+                            <input type="color" id="primaryColor" value="#6366F1" class="w-20 h-12 bg-transparent border-none cursor-pointer rounded-lg">
+                        </div>
+                        <div class="flex flex-col items-center">
+                            <label for="secondaryColor" class="input-label mb-2">Color Secundario</label>
+                            <input type="color" id="secondaryColor" value="#A78BFA" class="w-20 h-12 bg-transparent border-none cursor-pointer rounded-lg">
+                        </div>
+                    </div>
+                </div>
+                 <div class="section-card">
+                    <h2 class="section-title">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" x2="12" y1="17" y2="22"/><path d="M5 17h14v-1.76a2 2 0 0 0-1.11-1.79l-1.78-.9A2 2 0 0 1 15 10.76V6h1a2 2 0 0 0 0-4H8a2 2 0 0 0 0 4h1v4.76a2 2 0 0 1-1.11 1.79l-1.78.9A2 2 0 0 0 5 15.24Z"/></svg>
+                        <span>4. Preguntas de Venta</span>
+                    </h2>
+                    <div class="space-y-3">
+                        <input type="text" id="q1" class="input-field" placeholder="Pregunta 1 (Opcional)">
+                        <input type="text" id="q2" class="input-field" placeholder="Pregunta 2 (Opcional)">
+                        <input type="text" id="q3" class="input-field" placeholder="Pregunta 3 (Opcional)">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Columna de Output -->
+            <div class="space-y-6">
+                <div class="section-card">
+                     <h2 class="section-title">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/></svg>
+                        <span>5. Base de Conocimiento</span>
+                    </h2>
+                    <textarea id="knowledge" class="input-field min-h-[300px] lg:min-h-[465px] resize-y" placeholder="Pega aquí toda la información que debe saber el bot..."></textarea>
+                    <input type="file" id="fileInput" class="hidden" accept=".txt,.pdf">
+                    <button id="uploadBtn" class="mt-4 w-full flex items-center justify-center gap-2 bg-indigo-500/20 text-indigo-300 font-semibold py-2.5 px-4 rounded-xl hover:bg-indigo-500/40 transition-all border border-indigo-500/30">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" x2="12" y1="3" y2="15"/></svg>
+                        Cargar Archivo (.txt, .pdf)
+                    </button>
+                    <p id="file-feedback" class="text-xs text-gray-500 mt-2 text-center h-4"></p>
+                </div>
+                <button id="generateBtn" class="w-full bg-gradient-to-br from-indigo-500 to-purple-600 text-white font-bold py-3 px-6 rounded-full text-lg shadow-lg shadow-indigo-500/30 hover:shadow-xl hover:shadow-indigo-500/50 transition-all duration-300 transform hover:scale-105">
+                    Generar Código de la Demo
+                </button>
+                 <div id="output-container" class="section-card hidden relative">
+                    <h2 class="text-xl font-bold text-green-400 mb-4">¡Código Generado!</h2>
+                    <p class="text-gray-400 mb-3 text-sm">Copia este bloque y pégalo dentro del objeto `demoPresets` en el archivo `src/App.jsx`.</p>
+                    <textarea id="output" readonly class="w-full bg-gray-900 border border-gray-600 text-gray-200 rounded-xl p-4 font-mono text-xs min-h-[200px] resize-y"></textarea>
+                    <button id="copyBtn" class="absolute top-6 right-6 bg-gray-700 hover:bg-gray-600 text-white font-semibold py-1 px-3 rounded-md text-sm transition-all">Copiar</button>
+                    <p id="copyFeedback" class="text-green-400 text-xs mt-2 text-center hidden">¡Copiado!</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="module">
+        // Inicializar PDF.js worker
+        const { pdfjsLib } = globalThis;
+        if (pdfjsLib) {
+            pdfjsLib.GlobalWorkerOptions.workerSrc = `https://mozilla.github.io/pdf.js/build/pdf.worker.mjs`;
+        }
+
+        const uploadBtn = document.getElementById('uploadBtn');
+        const fileInput = document.getElementById('fileInput');
+        const knowledgeTextArea = document.getElementById('knowledge');
+        const fileFeedback = document.getElementById('file-feedback');
+
+        uploadBtn.addEventListener('click', () => fileInput.click());
+        fileInput.addEventListener('change', handleFileChange);
+
+        async function handleFileChange(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+
+            fileFeedback.textContent = 'Procesando archivo...';
+            uploadBtn.disabled = true;
+
+            try {
+                let textContent = '';
+                if (file.type === 'text/plain') {
+                    textContent = await file.text();
+                } else if (file.type === 'application/pdf') {
+                    if (!pdfjsLib) {
+                        throw new Error("La librería PDF.js no está cargada.");
+                    }
+                    const arrayBuffer = await file.arrayBuffer();
+                    const pdf = await pdfjsLib.getDocument({ data: arrayBuffer }).promise;
+                    for (let i = 1; i <= pdf.numPages; i++) {
+                        const page = await pdf.getPage(i);
+                        const text = await page.getTextContent();
+                        textContent += text.items.map(s => s.str).join(' ');
+                    }
+                } else {
+                    throw new Error("Formato de archivo no soportado.");
+                }
+                knowledgeTextArea.value += (knowledgeTextArea.value ? '\n\n---' : '') + `\n\n${textContent.trim()}`;
+                fileFeedback.textContent = `✅ "${file.name}" cargado y añadido.`;
+            } catch (err) {
+                console.error("Error al procesar el archivo:", err);
+                fileFeedback.textContent = `❌ Error: ${err.message}`;
+            } finally {
+                uploadBtn.disabled = false;
+                fileInput.value = ''; // Reset input
+                setTimeout(() => { fileFeedback.textContent = '' }, 4000);
+            }
+        }
+        
+        // --- Resto del script (sin cambios) ---
+        document.body.addEventListener('mousemove', (event) => {
+            document.body.style.setProperty('--mouse-x', `${event.clientX}px`);
+            document.body.style.setProperty('--mouse-y', `${event.clientY}px`);
+        });
+
+        document.getElementById('generateBtn').addEventListener('click', () => {
+            const slug = document.getElementById('slug').value.trim().toLowerCase().replace(/[^a-z0-9-]/g, '');
+            const agentName = document.getElementById('agentName').value;
+            const companyName = document.getElementById('companyName').value;
+            const primaryColor = document.getElementById('primaryColor').value;
+            const secondaryColor = document.getElementById('secondaryColor').value;
+            const q1 = document.getElementById('q1').value;
+            const q2 = document.getElementById('q2').value;
+            const q3 = document.getElementById('q3').value;
+            const knowledge = document.getElementById('knowledge').value;
+
+            if (!slug || !knowledge) {
+                alert('El "Slug" y la "Base de Conocimiento" son obligatorios.');
+                return;
+            }
+
+            const escapedKnowledge = knowledge.replace(/\\/g, '\\\\').replace(/`/g, '\\`').replace(/\$/g, '\\$');
+
+            const jsonObject = {
+                knowledge: escapedKnowledge,
+                agentProfile: { name: agentName, company: companyName },
+                themeColors: { primary: primaryColor, secondary: secondaryColor },
+                leadQualQuestions: [q1, q2, q3].filter(q => q.trim() !== ''),
+            };
+            
+            let prettyJsonString = JSON.stringify(jsonObject, null, 4);
+            prettyJsonString = prettyJsonString.replace(/"([^"]+)":/g, '$1:');
+            prettyJsonString = prettyJsonString.replace(/'/g, "\\'");
+            
+            prettyJsonString = prettyJsonString.replace(/: "([\s\S]*?)"\s*,(?=\s*agentProfile:)/, (match, p1) => `: \`${p1.replace(/\\`/g, '`')}\`,`);
+
+            const outputCode = `  '${slug}': ${prettyJsonString},`;
+            
+            const outputTextarea = document.getElementById('output');
+            outputTextarea.value = outputCode;
+            
+            const outputContainer = document.getElementById('output-container');
+            outputContainer.classList.remove('hidden');
+            outputContainer.scrollIntoView({ behavior: 'smooth' });
+        });
+        
+        document.getElementById('copyBtn').addEventListener('click', () => {
+            const outputTextarea = document.getElementById('output');
+            outputTextarea.select();
+            document.execCommand('copy');
+
+            const copyBtn = document.getElementById('copyBtn');
+            const feedback = document.getElementById('copyFeedback');
+            copyBtn.innerText = '¡Copiado!';
+            feedback.classList.remove('hidden');
+
+            setTimeout(() => {
+                copyBtn.innerText = 'Copiar';
+                feedback.classList.add('hidden');
+            }, 2000);
+        });
+    </script>
+</body>
+</html>
+
