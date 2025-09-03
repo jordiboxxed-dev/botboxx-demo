@@ -34,7 +34,7 @@ const demoPresets = {
     },
     leadQualQuestions: []
 },
-    // Demo de ejemplo 3: Setter IA
+    // Demo de ejemplo 4: Setter IA
   'setteria': {
     knowledge: `🚀 Te Armamos GRATIS tu Agente IA en 2 semanas
 Te armamos GRATIS un Agente IA completamente personalizado para tu constructora y listo para responder consultas de WhatsApp al instante 24/7, califica leads y le llena la agenda a tus asesores comerciales con clientes listos para comprar.
@@ -167,11 +167,7 @@ Transforma tu proceso de ventas hoy. El futuro de la construcción modular comie
       primary: '#000000',   // Color principal en HEX
       secondary: '#FFFFFF'  // Color secundario en HEX
     },
-    leadQualQuestions: [
-      'Primera pregunta de calificación',
-      'Segunda pregunta de calificación',
-      'Tercera pregunta de calificación'
-    ],
+    leadQualQuestions: [],
   },
 
   // ¡AQUÍ PUEDES AGREGAR TUS NUEVAS DEMOS!
