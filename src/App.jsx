@@ -34,6 +34,145 @@ const demoPresets = {
     },
     leadQualQuestions: []
 },
+    // Demo de ejemplo 3: Setter IA
+  'setteria': {
+    knowledge: `🚀 Te Armamos GRATIS tu Agente IA en 2 semanas
+Te armamos GRATIS un Agente IA completamente personalizado para tu constructora y listo para responder consultas de WhatsApp al instante 24/7, califica leads y le llena la agenda a tus asesores comerciales con clientes listos para comprar.
+Nosotros invertimos en el software y capital humano para desarrollarlo en 2 semanas, completamente sin compromiso y sin ningún riesgo de tu parte.
+¿Qué es el Agente IA Setter?
+
+El Agente IA Setter es una solución revolucionaria diseñada específicamente para constructoras modulares que buscan optimizar su proceso de ventas. Este asistente inteligente libera a tus asesores comerciales de las tareas operativas repetitivas, permitiéndoles enfocarse exclusivamente en lo que mejor saben hacer: cerrar ventas.
+Nuestro agente funciona como el primer punto de contacto con tus leads, proporcionando atención inmediata, educación sobre tus productos y calificación inteligente de prospectos. Una vez que identifica que un lead está genuinamente interesado y calificado, procede a agendar automáticamente llamadas con tus asesores comerciales o visitas a tu showroom, todo mientras mantiene la calidez y naturalidad de una conversación humana.
+Funciones Principales
+
+Respuesta Instantánea 24/7: Recibe y responde consultas de WhatsApp con velocidad y precisión, utilizando inteligencia artificial entrenada específicamente para el sector de construcción modular.
+Análisis Integral de Información: Procesa instantáneamente toda la base de datos de tu constructora para brindar respuestas precisas y detalladas que sorprenden por su calidad.
+Gestión Inteligente del Pipeline: Identifica automáticamente en qué etapa del proceso de venta se encuentra cada lead y adapta su comunicación en consecuencia.
+Consultas Técnicas Avanzadas: Responde preguntas complejas sobre precios, condiciones especiales, distancias de entrega, opciones de financiamiento y especificaciones técnicas.
+Calificación y Agendamiento: Realiza preguntas calificadoras estratégicas y agenda citas cuando detecta que el lead está listo para el siguiente paso.
+La Gran Oportunidad: Sistema Completo de Escalamiento
+
+🚀 El Embudo de Ventas Perfecto
+
+La verdadera oportunidad para captar mercado y escalar ventas tanto como quieras está en tener un embudo de ventas que funciona así:
+
+📱
+Meta Ads
+Miles de consultas WhatsApp baratas
+→
+🤖
+Agente IA
+Educa, califica y agenda
+→
+💼
+Asesores
+Solo cierran ventas
+Con el tiempo, este sistema te permite calcular exactamente cuál es el monto de inversión publicitaria que completa el calendario de tu equipo comercial, cuál es tu tasa de cierre y, por tanto, cuál es tu ROI (que seguramente sea altísimo).
+
+🎁 Bonus Exclusivo
+
+Si decidís implementar nuestros agentes IA, ponemos nuestro equipo publicitario (que generó +$10M USD en ventas) a correr anuncios para vos TOTALMENTE GRATIS.
+
+Te acompañamos en todo el proceso de ventas para maximizar tu retorno.
+Beneficios Transformadores
+
+📈 Beneficios Comerciales
+
+Aumento significativo en tasa de conversión
+Mayor cantidad de citas calificadas
+Reducción drástica de leads perdidos
+Optimización del ROI publicitario
+Escalabilidad ilimitada
+Reducción del ciclo de ventas
+👥 Beneficios para Asesores
+
+Liberación total de soporte operativo
+100% enfoque en cerrar ventas
+Leads pre-calificados y educados
+Eliminación de consultas repetitivas
+Mayor satisfacción laboral
+Productividad maximizada
+⚡ Beneficios Operativos
+
+Atención 24/7/365 automatizada
+Respuesta instantánea garantizada
+Múltiples conversaciones simultáneas
+Sin costos de personal adicional
+Capacidad ilimitada de manejo
+💰 Beneficios Económicos
+
+Eliminación de costos operativos fijos
+Reducción del costo por lead calificado
+Sin gastos de capacitación ni rotación
+Retorno de inversión rápido y medible
+Conversión de gasto fijo a variable
+Mayor productividad por asesor
+Proceso de Implementación
+
+🏗️ Fase 1: Recopilación de Información (5 días hábiles)
+
+Tu constructora comparte planillas de precios, variantes, detalles de modelos, documento de onboarding completo y exportación de chats históricos de WhatsApp entre asesores y leads para garantizar robustez estadística.
+🤝 Fase 2: Desarrollo Colaborativo (Trabajo en equipo)
+
+Analizamos categorías de preguntas y respuestas de tus asesores, validamos conjuntamente el FAQ base y complementamos con información web relevante para crear una base de conocimiento completa.
+🎯 Fase 3: Entrenamiento y Optimización (Responsabilidad nuestra)
+
+Realizamos pruebas de calidad exhaustivas, entrenamiento en mejores prácticas de ventas inmobiliarias adaptadas a tu marca y garantizamos robustez tecnológica.
+✅ Fase 4: Entrega y Prueba Gratuita
+
+Recibes tu Agente IA Setter completamente funcional para probar durante el período acordado. Podrás interactuar libremente por WhatsApp y evaluar su rendimiento sin compromiso.
+Compromiso de Calidad
+
+Nuestra propuesta de desarrollo gratuito demuestra nuestra confianza en la calidad del producto. Asumimos completamente la inversión inicial porque sabemos que el resultado será tan impresionante que querrás implementarlo permanentemente en tu constructora.
+La única condición: que nos proporciones toda la información necesaria en los primeros 5 días hábiles. Esto nos permite completar el desarrollo en 2 semanas desde el momento en que tenemos total acceso a la información y mantener nuestros costos controlados mientras te ofrecemos esta oportunidad única.
+Requisito de Inversión para Implementación
+
+Una vez que pruebes el agente durante el período gratuito y experimentes de primera mano su funcionamiento, podrás evaluar el verdadero impacto que puede tener en tu constructora.
+Cuando compruebes personalmente:
+
+✓
+Todo el tiempo que libera para tu equipo: Tus asesores dejan de perder horas respondiendo consultas básicas y se enfocan 100% en cerrar ventas con leads pre-calificados.
+✓
+La rentabilidad del tiempo optimizado: Cada hora que tu equipo comercial invierte ahora es en conversaciones con personas que realmente pueden y quieren comprar, no en educar curiosos.
+✓
+El potencial de escalamiento: Puedes lanzar campañas de Meta Ads sabiendo que miles de consultas serán manejadas automáticamente, filtrando solo los leads genuinos para tu equipo.
+✓
+El control sobre tu crecimiento: Este sistema automatizado te permite decidir exactamente qué tan rápido quieres hacer crecer tu negocio, sin limitaciones de personal.
+Si después de experimentar todos estos beneficios y entender cómo puede transformar tu operación comercial decides implementarlo permanentemente, necesitarás hacer una inversión para la instalación y puesta en marcha del sistema.
+
+Inversión requerida para implementación: USD $1,000
+
+Instalación, configuración y puesta en marcha completa
+Esta propuesta está dirigida exclusivamente a constructoras que ven el valor en invertir en tecnología que puede generar uno de los mayores retornos en ventas y productividad. Si no puedes realizar esta inversión inicial, esta oportunidad no está alineada con tu situación actual.
+
+¿Listo para Transformar tu Negocio?
+Los cupos son limitados para mantener la calidad del servicio
+
+📱 Escribime para verificar disponibilidad y coordinar una llamada
+Sobre Nuestro Equipo
+
++9
+Años de experiencia en publicidad digital
+$10M
+USD en ventas generadas para clientes
+100%
+Especialización en constructoras modulares
+Contamos con un sistema avanzado de prompt engineering, inversión en tecnología de punta con agentes IA y CRM profesional, además de un equipo con experiencia listo para ayudarte a vender más.
+Transforma tu proceso de ventas hoy. El futuro de la construcción modular comienza con la automatización inteligente.`,
+    agentProfile: { 
+      name: 'Grok', 
+      company: 'Agente IA Setter' 
+    },
+    themeColors: { 
+      primary: '#000000',   // Color principal en HEX
+      secondary: '#FFFFFF'  // Color secundario en HEX
+    },
+    leadQualQuestions: [
+      'Primera pregunta de calificación',
+      'Segunda pregunta de calificación',
+      'Tercera pregunta de calificación'
+    ],
+  },
 
   // ¡AQUÍ PUEDES AGREGAR TUS NUEVAS DEMOS!
   // Simplemente copia uno de los bloques de arriba y modifica los datos.
