@@ -110,12 +110,20 @@
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/></svg>
                         <span>5. Base de Conocimiento</span>
                     </h2>
-                    <textarea id="knowledge" class="input-field min-h-[300px] lg:min-h-[465px] resize-y" placeholder="Pega aquí toda la información que debe saber el bot..."></textarea>
-                    <input type="file" id="fileInput" class="hidden" accept=".txt,.pdf">
-                    <button id="uploadBtn" class="mt-4 w-full flex items-center justify-center gap-2 bg-indigo-500/20 text-indigo-300 font-semibold py-2.5 px-4 rounded-xl hover:bg-indigo-500/40 transition-all border border-indigo-500/30">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" x2="12" y1="3" y2="15"/></svg>
-                        Cargar Archivo (.txt, .pdf)
-                    </button>
+                    <textarea id="knowledge" class="input-field min-h-[300px] lg:min-h-[350px] resize-y" placeholder="Pega aquí toda la información que debe saber el bot..."></textarea>
+                    
+                    <div class="mt-4 space-y-3">
+                        <div class="relative flex items-center gap-2">
+                             <input type="url" id="urlInput" placeholder="O pega una URL para importar su contenido" class="input-field pr-28">
+                             <button id="importUrlBtn" class="absolute right-1.5 top-1/2 -translate-y-1/2 bg-indigo-500/80 text-white font-semibold py-1.5 px-3 rounded-lg hover:bg-indigo-500 transition-all text-sm">Importar</button>
+                        </div>
+                        <input type="file" id="fileInput" class="hidden" accept=".txt,.pdf">
+                        <button id="uploadBtn" class="w-full flex items-center justify-center gap-2 bg-indigo-500/20 text-indigo-300 font-semibold py-2.5 px-4 rounded-xl hover:bg-indigo-500/40 transition-all border border-indigo-500/30">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" x2="12" y1="3" y2="15"/></svg>
+                            Cargar Archivo (.txt, .pdf)
+                        </button>
+                    </div>
+
                     <p id="file-feedback" class="text-xs text-gray-500 mt-2 text-center h-4"></p>
                 </div>
                 <button id="generateBtn" class="w-full bg-gradient-to-br from-indigo-500 to-purple-600 text-white font-bold py-3 px-6 rounded-full text-lg shadow-lg shadow-indigo-500/30 hover:shadow-xl hover:shadow-indigo-500/50 transition-all duration-300 transform hover:scale-105">
@@ -133,7 +141,6 @@
     </div>
 
     <script type="module">
-        // Inicializar PDF.js worker
         const { pdfjsLib } = globalThis;
         if (pdfjsLib) {
             pdfjsLib.GlobalWorkerOptions.workerSrc = `https://mozilla.github.io/pdf.js/build/pdf.worker.mjs`;
@@ -143,43 +150,77 @@
         const fileInput = document.getElementById('fileInput');
         const knowledgeTextArea = document.getElementById('knowledge');
         const fileFeedback = document.getElementById('file-feedback');
+        const importUrlBtn = document.getElementById('importUrlBtn');
+        const urlInput = document.getElementById('urlInput');
 
         uploadBtn.addEventListener('click', () => fileInput.click());
         fileInput.addEventListener('change', handleFileChange);
-
+        importUrlBtn.addEventListener('click', handleUrlImport);
+        urlInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') handleUrlImport();
+        });
+        
         async function handleFileChange(event) {
             const file = event.target.files[0];
             if (!file) return;
+            await processDataSource(file, 'file');
+        }
 
-            fileFeedback.textContent = 'Procesando archivo...';
+        async function handleUrlImport() {
+            const url = urlInput.value.trim();
+            if (!url.startsWith('http')) {
+                fileFeedback.textContent = '❌ Por favor, ingresa una URL válida.';
+                setTimeout(() => { fileFeedback.textContent = '' }, 4000);
+                return;
+            }
+            await processDataSource(url, 'url');
+        }
+
+        async function processDataSource(source, type) {
+            fileFeedback.textContent = 'Procesando...';
             uploadBtn.disabled = true;
+            importUrlBtn.disabled = true;
 
             try {
                 let textContent = '';
-                if (file.type === 'text/plain') {
-                    textContent = await file.text();
-                } else if (file.type === 'application/pdf') {
-                    if (!pdfjsLib) {
-                        throw new Error("La librería PDF.js no está cargada.");
+                if (type === 'file') {
+                    if (source.type === 'text/plain') {
+                        textContent = await source.text();
+                    } else if (source.type === 'application/pdf') {
+                        if (!pdfjsLib) throw new Error("La librería PDF.js no está cargada.");
+                        const arrayBuffer = await source.arrayBuffer();
+                        const pdf = await pdfjsLib.getDocument({ data: arrayBuffer }).promise;
+                        for (let i = 1; i <= pdf.numPages; i++) {
+                            const page = await pdf.getPage(i);
+                            const text = await page.getTextContent();
+                            textContent += text.items.map(s => s.str).join(' ');
+                        }
+                    } else {
+                        throw new Error("Formato de archivo no soportado.");
                     }
-                    const arrayBuffer = await file.arrayBuffer();
-                    const pdf = await pdfjsLib.getDocument({ data: arrayBuffer }).promise;
-                    for (let i = 1; i <= pdf.numPages; i++) {
-                        const page = await pdf.getPage(i);
-                        const text = await page.getTextContent();
-                        textContent += text.items.map(s => s.str).join(' ');
-                    }
-                } else {
-                    throw new Error("Formato de archivo no soportado.");
+                } else if (type === 'url') {
+                     const proxyUrl = `https://api.allorigins.win/raw?url=${encodeURIComponent(source)}`;
+                     const response = await fetch(proxyUrl);
+                     if (!response.ok) throw new Error('La respuesta de la red no fue correcta.');
+                     const htmlText = await response.text();
+                     const parser = new DOMParser();
+                     const doc = parser.parseFromString(htmlText, 'text/html');
+                     doc.querySelectorAll('script, style, nav, footer, header, aside').forEach(el => el.remove());
+                     const bodyText = doc.body.textContent || "";
+                     textContent = bodyText.replace(/\s\s+/g, ' ').trim();
+                     if (textContent.length < 50) throw new Error("No se encontró suficiente texto en la página.");
                 }
+
                 knowledgeTextArea.value += (knowledgeTextArea.value ? '\n\n---' : '') + `\n\n${textContent.trim()}`;
-                fileFeedback.textContent = `✅ "${file.name}" cargado y añadido.`;
+                fileFeedback.textContent = `✅ Contenido de "${type === 'file' ? source.name : source}" añadido.`;
             } catch (err) {
-                console.error("Error al procesar el archivo:", err);
+                console.error("Error al procesar la fuente de datos:", err);
                 fileFeedback.textContent = `❌ Error: ${err.message}`;
             } finally {
                 uploadBtn.disabled = false;
-                fileInput.value = ''; // Reset input
+                importUrlBtn.disabled = false;
+                fileInput.value = '';
+                urlInput.value = '';
                 setTimeout(() => { fileFeedback.textContent = '' }, 4000);
             }
         }
@@ -249,4 +290,6 @@
     </script>
 </body>
 </html>
+
+
 
