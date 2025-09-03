@@ -13,6 +13,18 @@ const demoPresets = {
         '¿Estás interesado en una suscripción mensual?'
     ],
   },
+    'magnauy': {
+    knowledge: `\n\nIr al contenido Main Menu USD 0,00 0 Cart Calidad y calidez\nque cuidan CALIDAD Y CALIDEZ QUE CUIDAN En Estufas Magna, nos enorgullece ser una empresa uruguaya con más de 25 años de trayectoria en la fabricación de estufas de alto rendimiento. Desde nuestros inicios, hemos mantenido un firme compromiso con la calidad, la innovación y la sostenibilidad, desarrollando una gama de productos que incluyen estufas a leña y de pellets. INDUSTRIA URUGUAYA 25 AÑOS DE\nCONFIANZA Más de dos décadas de experiencia avalan nuestro compromiso y calidad. 6 AÑOS DE\nGARANTÍA Respaldo y compromiso contigo a largo plazo. DISEÑO\nCAUTIVADOR Aportamos funcionalidad y estética en espacios diversos. REDUCE EL CONSUMO Máximo rendimiento y calor, con menor costo y contaminación. LÍNEA LEÑA LÍNEA PELLETS LÍNEA PARRILLAS LÍNEA ACCESORIOS SUSCRIBITE A NUESTRO NEWSLETTER ¡Suscribite y recibí todas nuestras novedades! BLOG Estufas Magna: Calidez Nacional y Compromiso Ambiental Conocé más Eficiencia Excepcional en Estufas a Leña: Un Avance según la Norma EN 16510 Conocé más ¿Estufas con Triple Combustión? Conocé más CONTACTO MONTEVIDEO | AVENIDA ITALIA 6779 PUNTA DEL ESTE | AV. RIO BRANCO ESQ. AV. ROOSEVELT LUN A VIER 9.00 A 18.00 | SÁB 10.00 A 14.00 (+598) 2605 7753 Sobre nosotros contacto compra Preguntas frecuentes Envíos y devoluciones CUENTA Mi cuenta Mis compras Mis direcciones Gestionar consentimiento Al hacer clic en \"Aceptar\", acepta el almacenamiento de cookies en su dispositivo para mejorar la navegación del sitio, analizar el uso del mismo y contribuir a nuestras estrategias de marketing. Consulte nuestra Política de Privacidad para obtener más información. Funcional Funcional Siempre activo El almacenamiento o acceso técnico es estrictamente necesario para el propósito legítimo de permitir el uso de un servicio específico explícitamente solicitado por el abonado o usuario, o con el único propósito de llevar a cabo la transmisión de una comunicación a través de una red de comunicaciones electrónicas. Preferencias Preferencias El almacenamiento o acceso técnico es necesario para la finalidad legítima de almacenar preferencias no solicitadas por el abonado o usuario. Estadísticas Estadísticas El almacenamiento o acceso técnico que es utilizado exclusivamente con fines estadísticos. El almacenamiento o acceso técnico que se utiliza exclusivamente con fines estadísticos anónimos. Sin un requerimiento, el cumplimiento voluntario por parte de tu proveedor de servicios de Internet, o los registros adicionales de un tercero, la información almacenada o recuperada sólo para este propósito no se puede utilizar para identificarte. Marketing Marketing El almacenamiento o acceso técnico es necesario para crear perfiles de usuario para enviar publicidad, o para rastrear al usuario en una web o en varias web con fines de marketing similares. Administrar opciones Gestionar los servicios Gestionar {vendor_count} proveedores Leer más sobre estos propósitos Aceptar Denegar Ver preferencias Guardar preferencias Ver preferencias {title} {title} {title} Gestionar consentimiento Scroll al inicio Social Chat is free, download and try it now here!`,
+    agentProfile: {
+        name: "Estufito",
+        company: "Magna"
+    },
+    themeColors: {
+        primary: "#ff2600",
+        secondary: "#ebebeb"
+    },
+    leadQualQuestions: []
+},
   
   // Demo de ejemplo 2: Una empresa de tecnología
   'techsolutions': {
