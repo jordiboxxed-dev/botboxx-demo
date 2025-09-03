@@ -21,15 +21,22 @@ const demoPresets = {
     themeColors: { primary: '#00BFFF', secondary: '#1E90FF' },
     leadQualQuestions: ['¿Cuál es tu principal preocupación en ciberseguridad?', '¿Ya cuentas con alguna solución de seguridad?', ''],
   },
-  
-  'agentesetteria': {
-    knowledge: `🚀 Te Armamos GRATIS tu Agente IA en 2 semanas\nTe armamos GRATIS un Agente IA completamente personalizado para tu constructora y listo para responder consultas de WhatsApp al instante 24/7, califica leads y le llena la agenda a tus asesores comerciales con clientes listos para comprar.\nNosotros invertimos en el software y capital humano para desarrollarlo en 2 semanas, completamente sin compromiso y sin ningún riesgo de tu parte.\n¿Qué es el Agente IA Setter?\n\nEl Agente IA Setter es una solución revolucionaria diseñada específicamente para constructoras modulares que buscan optimizar su proceso de ventas. Este asistente inteligente libera a tus asesores comerciales de las tareas operativas repetitivas, permitiéndoles enfocarse exclusivamente en lo que mejor saben hacer: cerrar ventas.\nNuestro agente funciona como el primer punto de contacto con tus leads, proporcionando atención inmediata, educación sobre tus productos y calificación inteligente de prospectos. Una vez que identifica que un lead está genuinamente interesado y calificado, procede a agendar automáticamente llamadas con tus asesores comerciales o visitas a tu showroom, todo mientras mantiene la calidez y naturalidad de una conversación humana.\nFunciones Principales\n\nRespuesta Instantánea 24/7: Recibe y responde consultas de WhatsApp con velocidad y precisión, utilizando inteligencia artificial entrenada específicamente para el sector de construcción modular.\nAnálisis Integral de Información: Procesa instantáneamente toda la base de datos de tu constructora para brindar respuestas precisas y detalladas que sorprenden por su calidad.\nGestión Inteligente del Pipeline: Identifica automáticamente en qué etapa del proceso de venta se encuentra cada lead y adapta su comunicación en consecuencia.\nConsultas Técnicas Avanzadas: Responde preguntas complejas sobre precios, condiciones especiales, distancias de entrega, opciones de financiamiento y especificaciones técnicas.\nCalificación y Agendamiento: Realiza preguntas calificadoras estratégicas y agenda citas cuando detecta que el lead está listo para el siguiente paso.\nLa Gran Oportunidad: Sistema Completo de Escalamiento\n\n🚀 El Embudo de Ventas Perfecto\n\nLa verdadera oportunidad para captar mercado y escalar ventas tanto como quieras está en tener un embudo de ventas que funciona así:\n\n📱\nMeta Ads\nMiles de consultas WhatsApp baratas\n→\n🤖\nAgente IA\nEduca, califica y agenda\n→\n💼\nAsesores\nSolo cierran ventas\nCon el tiempo, este sistema te permite calcular exactamente cuál es el monto de inversión publicitaria que completa el calendario de tu equipo comercial, cuál es tu tasa de cierre y, por tanto, cuál es tu ROI (que seguramente sea altísimo).\n\n🎁 Bonus Exclusivo\n\nSi decidís implementar nuestros agentes IA, ponemos nuestro equipo publicitario (que generó +\\$10M USD en ventas) a correr anuncios para vos TOTALMENTE GRATIS.\n\nTe acompañamos en todo el proceso de ventas para maximizar tu retorno.\nBeneficios Transformadores\n\n📈 Beneficios Comerciales\n\nAumento significativo en tasa de conversión\nMayor cantidad de citas calificadas\nReducción drástica de leads perdidos\nOptimización del ROI publicitario\nEscalabilidad ilimitada\nReducción del ciclo de ventas\n👥 Beneficios para Asesores\n\nLiberación total de soporte operativo\n100% enfoque en cerrar ventas\nLeads pre-calificados y educados\nEliminación de consultas repetitivas\nMayor satisfacción laboral\nProductividad maximizada\n⚡ Beneficios Operativos\n\nAtención 24/7/365 automatizada\nRespuesta instantánea garantizada\nMúltiples conversaciones simultáneas\nSin costos de personal adicional\nCapacidad ilimitada de manejo\n💰 Beneficios Económicos\n\nEliminación de costos operativos fijos\nReducción del costo por lead calificado\nSin gastos de capacitación ni rotación\nRetorno de inversión rápido y medible\nConversión de gasto fijo a variable\nMayor productividad por asesor\nProceso de Implementación\n\n🏗️ Fase 1: Recopilación de Información (5 días hábiles)\n\nTu constructora comparte planillas de precios, variantes, detalles de modelos, documento de onboarding completo y exportación de chats históricos de WhatsApp entre asesores y leads para garantizar robustez estadística.\n🤝 Fase 2: Desarrollo Colaborativo (Trabajo en equipo)\n\nAnalizamos categorías de preguntas y respuestas de tus asesores, validamos conjuntamente el FAQ base y complementamos con información web relevante para crear una base de conocimiento completa.\n🎯 Fase 3: Entrenamiento y Optimización (Responsabilidad nuestra)\n\nRealizamos pruebas de calidad exhaustivas, entrenamiento en mejores prácticas de ventas inmobiliarias adaptadas a tu marca y garantizamos robustez tecnológica.\n✅ Fase 4: Entrega y Prueba Gratuita\n\nRecibes tu Agente IA Setter completamente funcional para probar durante el período acordado. Podrás interactuar libremente por WhatsApp y evaluar su rendimiento sin compromiso.\nCompromiso de Calidad\n\nNuestra propuesta de desarrollo gratuito demuestra nuestra confianza en la calidad del producto. Asumimos completamente la inversión inicial porque sabemos que el resultado será tan impresionante que querrás implementarlo permanentemente en tu constructora.\nLa única condición: que nos proporciones toda la información necesaria en los primeros 5 días hábiles. Esto nos permite completar el desarrollo en 2 semanas desde el momento en que tenemos total acceso a la información y mantener nuestros costos controlados mientras te ofrecemos esta oportunidad única.\nRequisito de Inversión para Implementación\n\nUna vez que pruebes el agente durante el período gratuito y experimentes de primera mano su funcionamiento, podrás evaluar el verdadero impacto que puede tener en tu constructora.\nCuando compruebes personalmente:\n\n✓\nTodo el tiempo que libera para tu equipo: Tus asesores dejan de perder horas respondiendo consultas básicas y se enfocan 100% en cerrar ventas con leads pre-calificados.\n✓\nLa rentabilidad del tiempo optimizado: Cada hora que tu equipo comercial invierte ahora es en conversaciones con personas que realmente pueden y quieren comprar, no en educar curiosos.\n✓\nEl potencial de escalamiento: Puedes lanzar campañas de Meta Ads sabiendo que miles de consultas serán manejadas automáticamente, filtrando solo los leads genuinos para tu equipo.\n✓\nEl control sobre tu crecimiento: Este sistema automatizado te permite decidir exactamente qué tan rápido quieres hacer crecer tu negocio, sin limitaciones de personal.\nSi después de experimentar todos estos beneficios y entender cómo puede transformar tu operación comercial decides implementarlo permanentemente, necesitarás hacer una inversión para la instalación y puesta en marcha del sistema.\n\nInversión requerida para implementación: USD \\$1,000\n\nInstalación, configuración y puesta en marcha completa\nEsta propuesta está dirigida exclusivamente a constructoras que ven el valor en invertir en tecnología que puede generar uno de los mayores retornos en ventas y productividad. Si no puedes realizar esta inversión inicial, esta oportunidad no está alineada con tu situación actual.\n\n¿Listo para Transformar tu Negocio?\nLos cupos son limitados para mantener la calidad del servicio\n\n📱 Escribime para verificar disponibilidad y coordinar una llamada\nSobre Nuestro Equipo\n\n+9\nAños de experiencia en publicidad digital\n\\$10M\nUSD en ventas generadas para clientes\n100%\nEspecialización en constructoras modulares\nContamos con un sistema avanzado de prompt engineering, inversión en tecnología de punta con agentes IA y CRM profesional, además de un equipo con experiencia listo para ayudarte a vender más.\nTransforma tu proceso de ventas hoy. El futuro de la construcción modular comienza con la automatización inteligente.`,
-    agentProfile: { name: "Grok", company: "Agente IA Setter" },
-    themeColors: { primary: "#b18cfe", secondary: "#ff40ff" },
-    leadQualQuestions: [ "Para poder agendar una llamada y darte la mejor información, ¿podrías decirme tu nombre?" ],
-  },
+    // Demo de ejemplo 3: Clima Soluciones - Aire Acondicionado
+    'climasoluciones': {
+    knowledge: `\n\nCatálogo de Aires Acondicionados Vivion\n\n\nModelo: STRATOS 9000 BTU DC INVERTER\nPrecio (IVA incluido): USD 512.40\nClase energética: A\nRendimiento en frío (EER): 3,22\nRendimiento en calor (COP): 3,60\n\n\nModelo: STRATOS 12000 BTU DC INVERTER\nPrecio (IVA incluido): USD 542.90\nClase energética: A\nRendimiento en frío (EER): 3,22\nRendimiento en calor (COP): 3,60\n\n\nModelo: STRATOS 18000 BTU DC INVERTER\nPrecio (IVA incluido): USD 774.70\nClase energética: A\nRendimiento en frío (EER): 3,22\nRendimiento en calor (COP): 3,60\n\n\nModelo: STRATOS 24000 BTU DC INVERTER\nPrecio (IVA incluido): USD 1050.42\nClase energética: A\nRendimiento en frío (EER): 3,22\nRendimiento en calor (COP): 3,60\n\n\nModelo: VIVION ON/OFF 9000 BTU\nPrecio (IVA incluido): USD 353.80\nPotencia nominal (frío): 622W\nPotencia nominal (calor): 857W\n\n\nModelo: VIVION ON/OFF 12000 BTU\nPrecio (IVA incluido): USD 392.84\nPotencia nominal (frío): 1234W\nPotencia nominal (calor): 1127W\n\n\nModelo: VIVION ON/OFF 18000 BTU\nPrecio (IVA incluido): USD 622.20\nPotencia nominal (frío): 1851W\nPotencia nominal (calor): 1663W\n\n\nModelo: VIVION ON/OFF 24000 BTU\nPrecio (IVA incluido): USD 805.20\nPotencia nominal (frío): 2164W\nPotencia nominal (calor): 1927W`,
+    agentProfile: {
+        name: "Fin",
+        company: "Clima Soluciones"
+    },
+    themeColors: {
+        primary: "#f26479",
+        secondary: "#e67205"
+    },
+    leadQualQuestions: []
+},
 
   // ¡AQUÍ PUEDES AGREGAR TUS NUEVAS DEMOS!
+  // Simplemente copia uno de los bloques de arriba y modifica los datos.
 };
 
 
@@ -57,7 +64,7 @@ const callGeminiAPI = async (payload, useGrounding = false, retries = 3, delay =
     if (!apiKey) {
         throw new Error("API key for Gemini is missing. Please set REACT_APP_GEMINI_API_KEY environment variable.");
     }
-    const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=${apiKey}`;
+    const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-05-20:generateContent?key=${apiKey}`;
     
     if (useGrounding) {
         payload.tools = [{ "google_search": {} }];
@@ -154,16 +161,16 @@ const WelcomeScreen = ({ onStart, themeColors }) => (
 );
 
 const KnowledgeUploader = ({ onBotStart, initialKnowledge = '', initialImage = null, initialLeadQuestions, onLeadQuestionsChange, initialAgentProfile, onAgentProfileChange, themeColors, onThemeColorsChange }) => {
-    const [knowledge, setKnowledge] = React.useState(initialKnowledge);
-    const [uploadedImage, setUploadedImage] = React.useState(initialImage);
-    const [urlInput, setUrlInput] = React.useState('');
-    const [importedUrl, setImportedUrl] = React.useState('');
-    const [error, setError] = React.useState('');
-    const [isGenerating, setIsGenerating] = React.useState(false);
-    const [insights, setInsights] = React.useState(null);
-    const [isLoadingFile, setIsLoadingFile] = React.useState(false);
-    const [isLoadingUrl, setIsLoadingUrl] = React.useState(false);
-    const fileInputRef = React.useRef(null);
+    const [knowledge, setKnowledge] = useState(initialKnowledge);
+    const [uploadedImage, setUploadedImage] = useState(initialImage);
+    const [urlInput, setUrlInput] = useState('');
+    const [importedUrl, setImportedUrl] = useState('');
+    const [error, setError] = useState('');
+    const [isGenerating, setIsGenerating] = useState(false);
+    const [insights, setInsights] = useState(null);
+    const [isLoadingFile, setIsLoadingFile] = useState(false);
+    const [isLoadingUrl, setIsLoadingUrl] = useState(false);
+    const fileInputRef = useRef(null);
 
     const handleStart = () => {
         if (knowledge.trim().length < 20 && !uploadedImage) {
@@ -321,21 +328,21 @@ const KnowledgeUploader = ({ onBotStart, initialKnowledge = '', initialImage = n
 };
 
 const ChatWindow = ({ knowledge, uploadedImage, leadQualQuestions, agentProfile, onReset, onShare, onBackToConfig, isTtsEnabled, onTtsToggle, themeColors }) => {
-    const [messages, setMessages] = React.useState([
+    const [messages, setMessages] = useState([
         { type: 'text', text: `¡Hola! Soy ${agentProfile.name || 'tu asistente virtual'}${agentProfile.company ? ` de ${agentProfile.company}`: ''}. Ya procesé la información. Preguntame lo que quieras 😉`, sender: 'bot' }
     ]);
-    const [input, setInput] = React.useState('');
-    const [imageToSend, setImageToSend] = React.useState(null);
-    const [isTyping, setIsTyping] = React.useState(false);
-    const [isRecording, setIsRecording] = React.useState(false);
-    const [currentAudio, setCurrentAudio] = React.useState(null);
-    const [conversationFlow, setConversationFlow] = React.useState({ type: 'normal', step: 0, data: {} });
+    const [input, setInput] = useState('');
+    const [imageToSend, setImageToSend] = useState(null);
+    const [isTyping, setIsTyping] = useState(false);
+    const [isRecording, setIsRecording] = useState(false);
+    const [currentAudio, setCurrentAudio] = useState(null);
+    const [conversationFlow, setConversationFlow] = useState({ type: 'normal', step: 0, data: {} });
     
-    const messagesEndRef = React.useRef(null);
-    const chatFileInputRef = React.useRef(null);
-    const recognitionRef = React.useRef(null);
+    const messagesEndRef = useRef(null);
+    const chatFileInputRef = useRef(null);
+    const recognitionRef = useRef(null);
 
-    React.useEffect(() => {
+    useEffect(() => {
         const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
         if (SpeechRecognition && !recognitionRef.current) {
             const recognition = new SpeechRecognition();
@@ -355,7 +362,7 @@ const ChatWindow = ({ knowledge, uploadedImage, leadQualQuestions, agentProfile,
         return () => { if(currentAudio) currentAudio.pause(); if (recognitionRef.current) recognitionRef.current.stop(); }
     }, [currentAudio]);
 
-    React.useEffect(() => { messagesEndRef.current?.scrollIntoView({ behavior: "smooth" }); }, [messages, isTyping]);
+    useEffect(() => { messagesEndRef.current?.scrollIntoView({ behavior: "smooth" }); }, [messages, isTyping]);
 
     const playAudio = async (text) => {
         if (currentAudio) { currentAudio.pause(); }
@@ -376,39 +383,29 @@ const ChatWindow = ({ knowledge, uploadedImage, leadQualQuestions, agentProfile,
         if (isTtsEnabled && message.sender === 'bot' && message.type === 'text' && message.text) { playAudio(message.text); }
     };
     
-    const getGeminiChatResponse = async (chatHistory, question, context, initialImage, currentImage, inLeadFlow = false, lastLeadQuestion = '') => {
-        let systemText = `Actúa como un asistente amigable y profesional llamado ${agentProfile.name || 'Asistente'}. Eres el asistente virtual de ${agentProfile.company || 'la empresa'}. Tu base de conocimiento es la siguiente información. Responde basándote ÚNICAMENTE en esta información. Si la pregunta no se puede responder, di amablemente que no tienes esa información. Si la respuesta no está en la base de conocimiento, tienes permitido usar tu conocimiento general para responder, pero siempre prioriza la información provista.`;
-        if (inLeadFlow) {
-            systemText += `\n\nIMPORTANTE: Estás en medio de una conversación para calificar a un cliente potencial. La última pregunta que hiciste fue: "${lastLeadQuestion}". La respuesta del usuario es su pregunta actual. Responde a su pregunta brevemente y luego, de forma natural, intenta volver a hacer la pregunta de calificación para obtener la información que necesitas.`;
-        }
+    const getGeminiChatResponse = async (chatHistory, question, context, initialImage, currentImage) => {
+        let systemText = `Actúa como un asistente amigable y profesional llamado ${agentProfile.name || 'Asistente'}. Eres el asistente virtual de ${agentProfile.company || 'la empresa'}. Tu base de conocimiento es ESTRICTAMENTE la siguiente información. No inventes información. Si no encuentras la respuesta en la base de conocimiento, tienes permitido usar conocimiento general para responder, pero siempre prioriza la información provista.`;
         if (context) { systemText += `\n\n---CONTEXTO DE TEXTO---\n${context}\n---FIN DE CONTEXTO---`; }
         if (initialImage) { systemText += `\n\nAdicionalmente, tienes una imagen de contexto general.`; }
-        systemText += `\n\nResponde siempre en español. Formatea las listas con asteriscos (*).`;
+        systemText += `\n\nResponde las preguntas del usuario basándote primero en la información proporcionada. Si la pregunta no se puede responder con eso, usa tu conocimiento general. Responde siempre en español. Formatea las listas con asteriscos (*).`;
         
-        const systemInstruction = { role: 'model', parts: [{ text: systemText }] };
-        const historyContents = chatHistory.filter(msg => msg.type === 'text').map(msg => ({ 
-            role: msg.sender === 'user' ? 'user' : 'model', 
-            parts: [{ text: msg.text }] 
-        }));
+        const historyContents = chatHistory.filter(msg => msg.type === 'text').map(msg => ({ role: msg.sender === 'user' ? 'user' : 'model', parts: [{ text: msg.text }] }));
         const userParts = [{ text: question }];
         const imageForPrompt = currentImage || initialImage;
-        if (imageForPrompt) { 
-            userParts.push({ inlineData: { mimeType: imageForPrompt.type, data: imageForPrompt.data.split(',')[1] } }); 
-        }
+        if (imageForPrompt) { userParts.push({ inlineData: { mimeType: imageForPrompt.type, data: imageForPrompt.data.split(',')[1] } }); }
         
         const payload = { 
-            contents: [...historyContents, { role: 'user', parts: userParts }],
-            systemInstruction: systemInstruction
+            contents: [ ...historyContents, { role: 'user', parts: userParts }],
+            systemInstruction: {
+                parts: [{ text: systemText }]
+            }
         };
         
         try {
             const result = await callGeminiAPI(payload, true);
             const text = result.candidates?.[0]?.content?.parts?.[0]?.text;
             return text || "Lo siento, no pude procesar tu pregunta en este momento.";
-        } catch (error) { 
-            console.error("Error en la respuesta del chat de Gemini:", error); 
-            return "Hubo un problema al contactar a la IA."; 
-        }
+        } catch (error) { console.error("Error en la respuesta del chat de Gemini:", error); return "Hubo un problema al contactar a la IA."; }
     };
     
     const handleImageFileChange = (event) => {
@@ -431,9 +428,12 @@ const ChatWindow = ({ knowledge, uploadedImage, leadQualQuestions, agentProfile,
 
             if (step < validQuestions.length) {
                 addMessage({ type: 'text', text: validQuestions[step], sender: 'bot' });
-                setConversationFlow({ type: 'leadQual', step: nextStep, data: newData });
+                setConversationFlow({ type: 'leadQual', step: nextStep, data });
             } else if (step === validQuestions.length) {
-                 addMessage({ type: 'text', text: `Gracias, ${userInput}. Y por último, ¿tu correo electrónico?`, sender: 'bot' });
+                addMessage({ type: 'text', text: 'Excelente. Para continuar, ¿cuál es tu nombre?', sender: 'bot' });
+                setConversationFlow({ type: 'leadQual', step: nextStep, data: newData });
+            } else if (step === validQuestions.length + 1) {
+                addMessage({ type: 'text', text: `Gracias, ${userInput}. Y por último, ¿tu correo electrónico?`, sender: 'bot' });
                 setConversationFlow({ type: 'leadQual', step: nextStep, data: { ...newData, name: userInput } });
             } else {
                 const finalData = { ...newData, email: userInput };
@@ -467,30 +467,15 @@ const ChatWindow = ({ knowledge, uploadedImage, leadQualQuestions, agentProfile,
         const currentImage = imageToSend;
         setInput(''); setImageToSend(null);
         
-        const validLeadQuestions = leadQualQuestions.filter(q => q && q.trim() !== '');
-
-        // Lógica de Flujo de Cualificación Mejorada
-        if (conversationFlow.type === 'leadQual') {
-            const isAnsweringDirectly = !currentInput.includes('?'); // Simple check if it's a statement vs a question
-            if(isAnsweringDirectly) {
-                handleFlows.leadQual(conversationFlow.step, conversationFlow.data, currentInput);
-                return;
-            } else {
-                // User asked a question instead of answering. Answer it, but stay in the flow.
-                setIsTyping(true);
-                const lastLeadQuestion = validLeadQuestions[conversationFlow.step - 1] || 'la información solicitada';
-                const botResponseText = await getGeminiChatResponse(messages, currentInput, knowledge, uploadedImage, currentImage, true, lastLeadQuestion);
-                setIsTyping(false);
-                addMessage({ type: 'text', text: botResponseText, sender: 'bot' });
-                return; // Important: we don't reset the flow
-            }
+        if (conversationFlow.type !== 'normal') {
+            handleFlows[conversationFlow.type](conversationFlow.step, conversationFlow.data, currentInput);
+            return;
         }
 
-        // Lógica para iniciar flujos
         const lowerInput = currentInput.toLowerCase();
-        if (validLeadQuestions.length > 0 && ['precio', 'información', 'contratar', 'comprar', 'servicio', 'costo'].some(kw => lowerInput.includes(kw))) {
+        if (leadQualQuestions.some(q => q && q.trim() !== '') && ['precio', 'información', 'contratar', 'comprar', 'servicio'].some(kw => lowerInput.includes(kw))) {
             addMessage({ type: 'text', text: '¡Claro! Para darte la mejor información, ¿puedo hacerte un par de preguntas?', sender: 'bot' });
-            handleFlows.leadQual(0, {}, currentInput);
+            handleFlows.leadQual(0, {}, null);
             return;
         }
         if (['cita', 'reunión', 'agendar', 'horario'].some(kw => lowerInput.includes(kw))) {
@@ -499,7 +484,6 @@ const ChatWindow = ({ knowledge, uploadedImage, leadQualQuestions, agentProfile,
             return;
         }
 
-        // Respuesta normal de la IA
         setIsTyping(true);
         const botResponseText = await getGeminiChatResponse(messages, currentInput, knowledge, uploadedImage, currentImage);
         setIsTyping(false);
@@ -633,6 +617,24 @@ const CrmNotification = ({ leadData }) => (
         </div>
     </div>
 );
+
+const BrandedBackground = ({ url }) => {
+    if (!url) return null;
+    let domain = '';
+    try { domain = new URL(url).hostname.replace('www.', ''); } catch (e) { return null; }
+    return (
+        <>
+            <div className="absolute inset-0 bg-grid-pattern opacity-10 z-0"></div>
+            <div className="pointer-events-none absolute inset-0 bg-spotlight z-0"></div>
+            <div className="absolute inset-0 flex items-center justify-center z-0">
+                <div className="text-center transform -rotate-12 select-none">
+                    <h1 className="text-[12vw] font-black text-white/5 leading-none">{domain}</h1>
+                    <h1 className="text-[12vw] font-black text-white/5 leading-none -mt-[3vw]">{domain}</h1>
+                </div>
+            </div>
+        </>
+    );
+};
 
 
 // --- Componente Principal App ---
@@ -771,22 +773,4 @@ export default function App() {
         </main>
     );
 }
-
-const BrandedBackground = ({ url }) => {
-    if (!url) return null;
-    let domain = '';
-    try { domain = new URL(url).hostname.replace('www.', ''); } catch (e) { return null; }
-    return (
-        <>
-            <div className="absolute inset-0 bg-grid-pattern opacity-10 z-0"></div>
-            <div className="pointer-events-none absolute inset-0 bg-spotlight z-0"></div>
-            <div className="absolute inset-0 flex items-center justify-center z-0">
-                <div className="text-center transform -rotate-12 select-none">
-                    <h1 className="text-[12vw] font-black text-white/5 leading-none">{domain}</h1>
-                    <h1 className="text-[12vw] font-black text-white/5 leading-none -mt-[3vw]">{domain}</h1>
-                </div>
-            </div>
-        </>
-    );
-};
 
