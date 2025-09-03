@@ -21,6 +21,19 @@ const demoPresets = {
     themeColors: { primary: '#00BFFF', secondary: '#1E90FF' },
     leadQualQuestions: ['¿Cuál es tu principal preocupación en ciberseguridad?', '¿Ya cuentas con alguna solución de seguridad?', ''],
   },
+    // Demo de ejemplo 3: Clima Soluciones - Aire Acondicionado
+    'climasoluciones': {
+    knowledge: `\n\nCatálogo de Aires Acondicionados Vivion\n\n\nModelo: STRATOS 9000 BTU DC INVERTER\nPrecio (IVA incluido): USD 512.40\nClase energética: A\nRendimiento en frío (EER): 3,22\nRendimiento en calor (COP): 3,60\n\n\nModelo: STRATOS 12000 BTU DC INVERTER\nPrecio (IVA incluido): USD 542.90\nClase energética: A\nRendimiento en frío (EER): 3,22\nRendimiento en calor (COP): 3,60\n\n\nModelo: STRATOS 18000 BTU DC INVERTER\nPrecio (IVA incluido): USD 774.70\nClase energética: A\nRendimiento en frío (EER): 3,22\nRendimiento en calor (COP): 3,60\n\n\nModelo: STRATOS 24000 BTU DC INVERTER\nPrecio (IVA incluido): USD 1050.42\nClase energética: A\nRendimiento en frío (EER): 3,22\nRendimiento en calor (COP): 3,60\n\n\nModelo: VIVION ON/OFF 9000 BTU\nPrecio (IVA incluido): USD 353.80\nPotencia nominal (frío): 622W\nPotencia nominal (calor): 857W\n\n\nModelo: VIVION ON/OFF 12000 BTU\nPrecio (IVA incluido): USD 392.84\nPotencia nominal (frío): 1234W\nPotencia nominal (calor): 1127W\n\n\nModelo: VIVION ON/OFF 18000 BTU\nPrecio (IVA incluido): USD 622.20\nPotencia nominal (frío): 1851W\nPotencia nominal (calor): 1663W\n\n\nModelo: VIVION ON/OFF 24000 BTU\nPrecio (IVA incluido): USD 805.20\nPotencia nominal (frío): 2164W\nPotencia nominal (calor): 1927W`,
+    agentProfile: {
+        name: "Fin",
+        company: "Clima Soluciones"
+    },
+    themeColors: {
+        primary: "#f26479",
+        secondary: "#e67205"
+    },
+    leadQualQuestions: []
+},
 
   // ¡AQUÍ PUEDES AGREGAR TUS NUEVAS DEMOS!
   // Simplemente copia uno de los bloques de arriba y modifica los datos.
